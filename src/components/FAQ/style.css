@@ -1,0 +1,68 @@
+.accordion-button {
+    background-color: #F1F3FF;
+    color: #000;
+    font-family: Arial;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 20px;
+    border: 1px;
+}
+
+.accordion-body {
+    background-color: rgb(255, 255, 255);
+}
+
+.accordion {
+    color: #000;
+    font-family: Arial;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 20px;
+}
+
+.header-text-sec-5 {
+    color: #000;
+    font-family: Arial;
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 36px;
+}
+
+.sub-text-sec-5 {
+    color: #000;
+    font-family: Arial;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 20px;
+}
+
+@media screen and (max-width: 576px) {
+
+    .wrap-faq {
+        margin-bottom: 24px;
+    }
+
+    .header-text-sec-5 {
+        text-align: center;
+        color: #000;
+        font-family: Arial;
+        font-size: 24px;
+        font-style: normal;
+        font-weight: 700;
+        line-height: 36px;
+    }
+
+    .sub-text-sec-5 {
+        text-align: center;
+        color: #000;
+        font-family: Arial;
+        font-size: 14px;
+        font-style: normal;
+        font-weight: 700;
+        line-height: 20px;
+    }
+}

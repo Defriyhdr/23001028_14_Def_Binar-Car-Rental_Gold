@@ -1,0 +1,70 @@
+.card-blue {
+    background-color: var(--primary-dark-blue-04, #0D28A6);
+}
+
+.card-blue-header-text {
+    color: var(--neutral-01, #FFF);
+    text-align: center;
+    font-family: Arial;
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 36px;
+}
+
+.card-blue-text {
+    color: var(--neutral-01, #FFF);
+    text-align: center;
+    font-family: Arial;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 20px;
+}
+
+.header-text-sec-4 {
+    color: #000;
+    text-align: center;
+    font-family: Arial;
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 36px;
+}
+
+.sub-text-sec-4 {
+    color: #000;
+    text-align: center;
+    font-family: Arial;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 20px;
+}
+
+
+@media screen and (min-width: 1400px) {
+    .card-blue-header-text {
+        color: var(--neutral-01, #FFF);
+        text-align: center;
+        font-family: Arial;
+        font-size: 36px;
+        font-style: normal;
+        font-weight: 700;
+        line-height: 150%;
+    }
+
+    .card-blue-text {
+        margin: auto;
+        margin-bottom: 20px;
+        width: 468px;
+        color: var(--neutral-01, #FFF);
+        text-align: center;
+        font-family: Arial;
+        font-size: 14px;
+        font-style: normal;
+        font-weight: 700;
+        line-height: 20px;
+    }
+
+}

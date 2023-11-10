@@ -1,0 +1,213 @@
+.header-text-section-3 {
+    color: #000;
+    font-family: Arial;
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 36px;
+}
+
+.sub-text-section-3 {
+    color: #000;
+    font-family: Arial;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 20px;
+}
+
+.title-card-section-3 {
+    color: #000;
+    font-family: Arial;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 24px;
+}
+
+.text-card-section-3 {
+    color: #000;
+    font-family: Arial;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 20px;
+}
+
+.why-us-card {
+    padding: 28px;
+}
+
+@media screen and (max-width: 576px) {
+    .header-text-section-3 {
+        text-align: center;
+    }
+
+    .sub-text-section-3 {
+        text-align: center;
+    }
+
+    .why-us-wrap {
+        margin-top: 12px;
+    }
+
+    .why-us-card {
+        padding: 24px;
+    }
+
+    .title-card-section-3 {
+        color: #000;
+        font-family: Arial;
+        font-size: 16px;
+        font-style: normal;
+        font-weight: 700;
+        line-height: 24px;
+        padding-top: 16px;
+    }
+
+    .text-card-section-3 {
+        color: #000;
+        font-family: Arial;
+        font-size: 14px;
+        font-style: normal;
+        font-weight: 700;
+        line-height: 20px;
+        padding-top: 16px;
+    }
+}
+
+@media screen and (min-device-width: 577px) and (max-device-width: 767px) {
+    .why-us-wrap {
+        margin-top: 12px;
+    }
+
+    .why-us-card {
+        padding: 24px;
+    }
+
+    .title-card-section-3 {
+        color: #000;
+        font-family: Arial;
+        font-size: 16px;
+        font-style: normal;
+        font-weight: 700;
+        line-height: 24px;
+        padding-top: 16px;
+    }
+
+    .text-card-section-3 {
+        color: #000;
+        font-family: Arial;
+        font-size: 14px;
+        font-style: normal;
+        font-weight: 700;
+        line-height: 20px;
+        padding-top: 16px;
+    }
+}
+
+@media screen and (min-device-width: 768px) and (max-device-width: 991px) {
+    .why-us-wrap {
+        height: 200px;
+        margin-bottom: 24px;
+    }
+
+    .why-us-card {
+        padding: 24px;
+    }
+
+    .title-card-section-3 {
+        color: #000;
+        font-family: Arial;
+        font-size: 16px;
+        font-style: normal;
+        font-weight: 700;
+        line-height: 24px;
+        padding-top: 16px;
+    }
+
+    .text-card-section-3 {
+        color: #000;
+        font-family: Arial;
+        font-size: 14px;
+        font-style: normal;
+        font-weight: 700;
+        line-height: 20px;
+        padding-top: 16px;
+    }
+}
+
+@media screen and (min-device-width: 992px) and (max-device-width: 1199px) {
+    .why-us-card {
+        width: 210px;
+        height: 260px;
+    }
+
+    .title-card-section-3 {
+        color: #000;
+        font-family: Arial;
+        font-size: 16px;
+        font-style: normal;
+        font-weight: 700;
+        line-height: 24px;
+        padding-top: 16px;
+    }
+
+    .text-card-section-3 {
+        color: #000;
+        font-family: Arial;
+        font-size: 14px;
+        font-style: normal;
+        font-weight: 700;
+        line-height: 20px;
+        padding-top: 16px;
+    }
+}
+
+@media screen and (min-device-width: 1200px) and (max-device-width: 1399px) {
+    .why-us-card {
+        height: 225px;
+    }
+
+    .title-card-section-3 {
+        color: #000;
+        font-family: Arial;
+        font-size: 16px;
+        font-style: normal;
+        font-weight: 700;
+        line-height: 24px;
+        padding-top: 16px;
+    }
+
+    .text-card-section-3 {
+        color: #000;
+        font-family: Arial;
+        font-size: 14px;
+        font-style: normal;
+        font-weight: 700;
+        line-height: 20px;
+        padding-top: 16px;
+    }
+}
+
+@media screen and (min-device-width: 1400px) {
+    .title-card-section-3 {
+        color: #000;
+        font-family: Arial;
+        font-size: 16px;
+        font-style: normal;
+        font-weight: 700;
+        line-height: 24px;
+        padding-top: 16px;
+    }
+
+    .text-card-section-3 {
+        color: #000;
+        font-family: Arial;
+        font-size: 14px;
+        font-style: normal;
+        font-weight: 700;
+        line-height: 20px;
+        padding-top: 16px;
+    }
+}

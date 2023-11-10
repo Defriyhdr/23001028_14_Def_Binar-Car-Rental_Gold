@@ -1,0 +1,38 @@
+.header-tex-sec-2 {
+    color: #000;
+    font-family: Arial;
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 36px;
+}
+
+.sub-text-sec-2 {
+    margin-top: 32px;
+    color: #000;
+    font-family: Arial;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 20px;
+}
+
+.content-text-sec-2 {
+    color: #000;
+    font-family: Arial;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 20px;
+}
+
+.icon-check-list {
+    width: 24px;
+    height: 24px;
+}
+
+@media screen and (max-width: 576px) {
+    .wrap-os-img {
+        margin-bottom: 30px;
+    }
+}

@@ -1,0 +1,42 @@
+.header-hero-text {
+    color: #000;
+    font-family: Arial;
+    font-size: 36px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 150%;
+}
+
+.sub-text-hero {
+    color: #000;
+    font-family: Arial;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 20px;
+}
+
+.btn-success {
+    background-color: #5CB85F;
+    border-color: #5CB85F;
+    border-radius: 2px;
+}
+
+@media screen and (max-width: 576px) {
+    .header-hero-text {
+        margin-top: 90px;
+    }
+
+    .sub-text-hero {
+        margin-top: 24px
+    }
+
+    .btn-success {
+        margin-top: 20px;
+    }
+
+    .wrap-car {
+        margin-top: 30px;
+        align-items: end;
+    }
+}

@@ -1,0 +1,29 @@
+.bg-blue-light {
+    background-color: #F1F3FF;
+}
+
+.nav-link {
+    color: #000;
+    font-family: Arial;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 20px;
+}
+
+.offcanvas-title {
+    color: #000;
+    font-family: Arial;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 20px;
+}
+
+.navbar-toggler {
+    color: #F1F3FF;
+}
+
+.offcanvas {
+    --bs-offcanvas-width: 50vw;
+}
