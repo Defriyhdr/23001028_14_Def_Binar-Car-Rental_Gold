@@ -11,9 +11,9 @@ const Hero = () => {
   return (
     <>
       <section id="hero" className="container-fluid bg-blue-light pt-2 my-2">
-        <div className="container mt-xxl-5 mt-xl-5 mt-lg-5 mt-md-3 mt-sm-5 pt-xxl-5 pt-xl-5 pt-lg-5 pt-md-3 bg-blue-light">
+        <div className="container mt-xxl-3 mt-xl-3 mt-lg-3 mt-md-3 mt-sm-5 pt-xxl-3 pt-xl-3 pt-lg-3 pt-md-3 bg-blue-light">
           <div className="row">
-            <div className="col-sm-12 col-lg-6 pt-lg-2 mt-xxl-5 pt-xl-0 mt-xl-5 ">
+            <div className="col-sm-12 col-lg-6 pt-lg-2 mt-xxl-3 pt-xl-0 mt-xl-3 align-self-center">
               <h1 className="header-hero-text mt-xxl-5 mt-xl-5 mt-lg-5 mt-md-5 mt-sm-5">
                 Sewa & Rental Mobil Terbaik di kawasan Yogyakarta
               </h1>

@@ -100,10 +100,12 @@ const CarSearch = () => {
         {/* form */}
         <div onClick={handleOn} className="container card p-0 card-search">
           <div className="card-body">
-            <div className="d-inline-flex flex-wrap gap-2 ">
+            <div className="d-inline-flex flex-wrap gap-2">
               <div className="input-car-name">
                 {/* search car */}
-                <label className="form-label text-label mb-1">Nama Mobil</label>
+                <label htmlFor="name" className="form-label text-label mb-1">
+                  Nama Mobil
+                </label>
                 <input
                   type="text"
                   value={name}
@@ -158,7 +160,6 @@ const CarSearch = () => {
               {/* status */}
 
               <div className="wrap-btn">
-                {/* <div onClick={isFilter ? handleReset : handleSubmit}>{isFilter ? <ButtonReset /> : <ButtonGetCar />}</div> */}
                 <button
                   onClick={() => {
                     if (isFilter) {
