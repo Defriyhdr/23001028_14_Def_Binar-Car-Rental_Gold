@@ -1,0 +1,21 @@
+.btn-detail-car {
+    color: var(--neutral-01, #FFF);
+    font-family: Arial;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 20px;
+    display: flex;
+    width: 285px;
+    height: 48px;
+    padding: 8px 12px;
+    justify-content: center;
+    align-items: center;
+    border-radius: 2px;
+    background: var(--primary-lime-green-04, #5CB85F);
+    border: none;
+}
+
+a {
+    text-decoration: none;
+}

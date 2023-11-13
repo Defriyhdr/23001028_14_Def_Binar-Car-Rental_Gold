@@ -11,25 +11,25 @@ import iconTwitch from "../../assets/icon/icon_twitch.png";
 const Footer = () => {
   const [list] = useState([
     {
-      icon: <img src={iconFacebook} />,
+      icon: iconFacebook,
     },
     {
-      icon: <img src={iconInstagram} />,
+      icon: iconInstagram,
     },
     {
-      icon: <img src={iconTwitter} />,
+      icon: iconTwitter,
     },
     {
-      icon: <img src={iconMail} />,
+      icon: iconMail,
     },
     {
-      icon: <img src={iconTwitch} />,
+      icon: iconTwitch,
     },
   ]);
 
   return (
     <>
-      <footer className="container my-5">
+      <section id="footer" className="container my-5">
         <div className="row">
           {/* addres */}
           <div className="col-sm-12 col-lg-3">
@@ -45,22 +45,22 @@ const Footer = () => {
           <div className="col-sm-12 col-lg-2 ps-lg-5">
             <ul className="navbar-nav ms-auto wrap-nav">
               <li className="nav-item wrap-nav-li">
-                <a className="nav-link p-0 mb-3  me-lg-0  " href="#">
+                <a className="nav-link p-0 mb-3 me-lg-0" href="#our-services">
                   Our Services
                 </a>
               </li>
               <li className="nav-item wrap-nav-li">
-                <a className="nav-link p-0 mb-3  me-lg-0 " href="#">
+                <a className="nav-link p-0 mb-3 me-lg-0" href="#why-us">
                   Why Us
                 </a>
               </li>
               <li className="nav-item wrap-nav-li">
-                <a className="nav-link p-0 mb-3  me-lg-0 " href="#">
+                <a className="nav-link p-0 mb-3 me-lg-0" href="#testimonial">
                   Testimonial
                 </a>
               </li>
               <li className="nav-item wrap-nav-li">
-                <a className="nav-link p-0 mb-3  me-lg-0 " href="#">
+                <a className="nav-link p-0 mb-3 me-lg-0" href="#faq">
                   FAQ
                 </a>
               </li>
@@ -77,7 +77,7 @@ const Footer = () => {
               <div className="col-12 gap-2">
                 {list.map((item) => (
                   <div key={item} className="wrap-icon">
-                    {item.icon}
+                    <img src={item.icon} />
                   </div>
                 ))}
               </div>
@@ -100,7 +100,7 @@ const Footer = () => {
           </div>
           {/* logo */}
         </div>
-      </footer>
+      </section>
     </>
   );
 };

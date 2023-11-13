@@ -1,12 +1,11 @@
 .accordion-button {
-    background-color: #F1F3FF;
     color: #000;
     font-family: Arial;
     font-size: 14px;
     font-style: normal;
     font-weight: 700;
     line-height: 20px;
-    border: 1px;
+    border: 1px solid #D4D4D4;
 }
 
 .accordion-body {

@@ -1,0 +1,218 @@
+.card-search {
+    border: 0px;
+    border-radius: 8px;
+    box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.15);
+    position: absolute;
+    top: 530px;
+    margin: auto;
+    z-index: 1050;
+}
+
+.wrap-list-car {
+    z-index: 0;
+    max-width: 1180px;
+    padding-top: 80px;
+    padding-bottom: 80px;
+    margin: auto;
+    justify-content: center;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-start;
+    gap: 24px;
+}
+
+.input-car-name {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 4px;
+    flex: 1 0 0;
+}
+
+.select-car-category {
+    display: flex;
+    width: 330px;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 4px;
+    flex: 1 0 0;
+}
+
+.wrap-btn {
+    display: flex;
+    margin-top: 27px;
+    height: 36px;
+}
+
+.text-label {
+    color: var(--neutral-04, #2a2929);
+    font-family: Rubik;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 18px;
+}
+
+.text-input {
+    color: var(--neutral-50, #999);
+    font-family: Rubik;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 300;
+    line-height: 18px;
+    padding: 9px 12px;
+}
+
+.text-select {
+    display: flex;
+    gap: 8px;
+    color: var(--neutral-50, #999);
+    font-family: Rubik;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 300;
+    line-height: 18px;
+    padding: 9px 12px;
+}
+
+.card-style {
+    border-color: #ededed;
+    border-radius: 8px;
+    background: var(--neutral-01, #FFF);
+    box-shadow: 0px 0px 4px 0px rgba(174, 174, 174, 0.15);
+}
+
+.card-list {
+    display: flex;
+    width: 333px;
+    height: 478px;
+    padding: 24px;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 24px;
+    flex: 1 0 0;
+}
+
+.car-img {
+    width: 285px;
+    height: 160px;
+}
+
+.car-name-text {
+    color: var(--neutral-01, #000);
+    font-family: Arial;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 20px;
+}
+
+.car-price-text {
+    color: var(--neutral-01, #000);
+    font-family: Arial;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 24px;
+}
+
+.car-description-text {
+    color: var(--neutral-01, #000);
+    font-family: Arial;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 20px;
+}
+
+.list-btn-search {
+    display: flex;
+    width: 284px;
+    height: 48px;
+    justify-content: center;
+    align-items: center;
+    gap: 12px;
+    color: var(--neutral-01, #FFF);
+    font-family: Arial;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 20px;
+    border-radius: 2px;
+    text-decoration: none;
+    list-style: none;
+
+}
+
+.overlay-search {
+    position: absolute;
+    margin: 0px;
+    padding: 0px;
+    z-index: 1030;
+    width: 300vw;
+    height: 310vh;
+    background: rgba(0, 0, 0, 0.60);
+}
+
+.wrap-not-found {
+    display: inline-flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
+}
+
+.not-found-header-text {
+    color: #000000;
+    font-family: Rubik;
+    font-size: 100px;
+    font-style: normal;
+    font-weight: 800;
+    line-height: normal;
+}
+
+.not-found-text {
+    color: #000000;
+    text-align: center;
+    font-family: Rubik;
+    font-size: 26px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+}
+
+.btn-get-car {
+    display: flex;
+    width: 92px;
+    height: 36px;
+    justify-content: center;
+    align-items: center;
+    border-radius: 2px;
+    background: var(--primary-lime-green-04, #5CB85F);
+    color: var(--neutral-01, #FFF);
+    font-family: Arial;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 20px;
+    display: flex;
+    padding: 8px 12px;
+    border: none;
+}
+
+.btn-reset {
+    display: inline-flex;
+    width: 92px;
+    height: 36px;
+    padding: 8px 12px;
+    justify-content: center;
+    align-items: center;
+    border-radius: 2px;
+    border: 1px solid var(--primary-dark-blue-04, #0D28A6);
+    background: var(--neutral-01, #FFF);
+    color: #0D28A6;
+    font-family: Arial;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 20px;
+}

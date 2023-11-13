@@ -42,7 +42,6 @@
     line-height: 20px;
 }
 
-
 @media screen and (min-width: 1400px) {
     .card-blue-header-text {
         color: var(--neutral-01, #FFF);

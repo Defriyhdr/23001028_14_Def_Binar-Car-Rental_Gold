@@ -35,7 +35,7 @@ const ourServices = () => {
 
             {/* right */}
             <div className="col-sm-12 col-lg-6 mt-xxl-4 mt-lg-4 mt-md-0">
-              <h2 className="header-text-sec-2">Best Car Rental for any kind of trip in (Lokasimu)!</h2>
+              <h2 className="header-text-sec-2">Best Car Rental for any kind of trip in Yogyakarta !</h2>
               <p className="sub-text-sec-2">
                 Sewa mobil di (Lokasimu) bersama Binar Car Rental jaminan harga lebih murah dibandingkan yang lain, kondisi mobil
                 baru, serta kualitas pelayanan terbaik untuk perjalanan wisata, bisnis, wedding, meeting, dll.

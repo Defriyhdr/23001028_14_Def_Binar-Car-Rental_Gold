@@ -37,7 +37,7 @@ const FAQ = () => {
   ]);
 
   return (
-    <section className="container text-sm-center text-lg-start  mt-5 ">
+    <section id="faq" className="container text-sm-center text-lg-start  mt-5 ">
       <div className="row">
         <div className="col-sm-12 col-lg-5 mb-sm-3 wrap-faq">
           <h2 className="header-text-sec-5">Frequently Asked Question</h2>

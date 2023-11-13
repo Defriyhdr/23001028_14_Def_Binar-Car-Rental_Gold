@@ -8,22 +8,22 @@ import iconProfessional from "../../assets/icon/icon_professional.png";
 const whyUs = () => {
   const [list] = useState([
     {
-      icon: <img src={iconComplete} />,
+      icon: iconComplete,
       title: "Mobil Lengkap",
       content: "Tersedia banyak pilihan mobil, kondisi masih baru, bersih dan terawat",
     },
     {
-      icon: <img src={iconPrice} />,
+      icon: iconPrice,
       title: "Harga Murah",
       content: "Harga murah dan bersaing, bisa bandingkan harga kami dengan rental mobil lain",
     },
     {
-      icon: <img src={icon24Hrs} />,
+      icon: icon24Hrs,
       title: "Layanan 24 Jam",
       content: "Siap melayani kebutuhan Anda selama 24 jam nonstop. Kami juga tersedia di akhir minggu",
     },
     {
-      icon: <img src={iconProfessional} />,
+      icon: iconProfessional,
       title: "Sopir Profesional",
       content: "Sopir yang profesional, berpengalaman, jujur, ramah dan selalu tepat waktu",
     },
@@ -41,7 +41,7 @@ const whyUs = () => {
             <div key={i} className="col-sm-12 col-md-6 col-lg-3">
               <div className="card why-us-wrap">
                 <div className="card-body why-us-card">
-                  {it.icon}
+                  <img src={it.icon} />
                   <h3 className="title-card-section-3 mb-0 ">{it.title}</h3>
                   <p className="text-card-section-3 mb-0 ">{it.content}</p>
                 </div>
