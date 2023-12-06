@@ -196,8 +196,8 @@ const CarSearch = () => {
                   <p className="car-name-text">{car.name}</p>
                   <h1 className="car-price-text">{`Rp ${car.price} / hari`}</h1>
                   <h2 className="car-description-text">
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
-                    magna aliqua.
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
+                    incididunt ut labore et dolore magna aliqua.
                   </h2>
                 </div>
                 <div className="d-flex m-auto">

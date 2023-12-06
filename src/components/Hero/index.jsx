@@ -18,8 +18,8 @@ const Hero = () => {
                 Sewa & Rental Mobil Terbaik di kawasan Yogyakarta
               </h1>
               <p className="sub-text-hero mt-xxl-4 mt-xl-4 mt-lg-2 mt-md-4 mt-sm-4">
-                Selamat datang di Binar Car Rental. Kami menyediakan mobil kualitas terbaik dengan harga terjangkau. Selalu siap
-                melayani kebutuhanmu untuk sewa mobil selama 24 jam.
+                Selamat datang di Binar Car Rental. Kami menyediakan mobil kualitas terbaik dengan
+                harga terjangkau. Selalu siap melayani kebutuhanmu untuk sewa mobil selama 24 jam.
               </p>
 
               {isCarPage && (
