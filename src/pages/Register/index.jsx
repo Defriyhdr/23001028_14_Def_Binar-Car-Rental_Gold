@@ -11,9 +11,6 @@ function Register() {
             <div className="container-right-register">
                 <h1>Binar Car Rental</h1>
                 <img src={LandingPageImage} />
-                {/* <div className="landing-page-image">
-
-                </div> */}
             </div>
         </div>
     )

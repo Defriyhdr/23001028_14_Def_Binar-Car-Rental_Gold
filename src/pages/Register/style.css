@@ -34,11 +34,6 @@
     width: 900px;
 }
 
-
-/* .landing-page-image{
-    background-image: url('../../assets/img/LandingPageDesktop.png');
-} */
-
 @media only screen and (max-width: 850px) {
     .container-right-register{
         display: none;
