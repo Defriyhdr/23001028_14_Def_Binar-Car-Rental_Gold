@@ -15,7 +15,7 @@ const Hero = () => {
           <div className="row">
             <div className="col-sm-12 col-lg-6 pt-lg-2 mt-xxl-3 pt-xl-0 mt-xl-3 align-self-center">
               <h1 className="header-hero-text mt-xxl-5 mt-xl-5 mt-lg-5 mt-md-5 mt-sm-5">
-                Sewa & Rental Mobil Terbaik di kawasan Yogyakarta !!!
+                Sewa & Rental Mobil Terbaik di kawasan Yogyakarta
               </h1>
               <p className="sub-text-hero mt-xxl-4 mt-xl-4 mt-lg-2 mt-md-4 mt-sm-4">
                 Selamat datang di Binar Car Rental. Kami menyediakan mobil kualitas terbaik dengan
