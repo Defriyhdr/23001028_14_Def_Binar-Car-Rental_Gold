@@ -1,6 +1,6 @@
 
 import imgLogo from "../../assets/img/logo_car.png"
-import { Link } from "react-router-dom"
+import { Link, useNavigate } from "react-router-dom"
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import "./style.css"
@@ -20,6 +20,7 @@ function FormRegister(){
     const [registerPayload, setRegisterPayload] = useState(initialPayload)
     const [buttonDisable, setButtonDisable] = useState(false)
     const [alertError, setAlertError] = useState(false)
+    const navigate = useNavigate()
 
     function handleFormRegister(e){
         setAlertError(false)
@@ -33,14 +34,13 @@ function FormRegister(){
             const response = await axios.post('https://api-car-rental.binaracademy.org/customer/auth/register', registerPayload)
             console.log(response)
             setButtonDisable(false)
+            navigate('/login')
         } catch (error) {
             console.log(error)
             setButtonDisable(false)
             setAlertError(true)
         }
-        
     }
-
 
     return (  
         <div className="container-form-register d-grid gap-3">
