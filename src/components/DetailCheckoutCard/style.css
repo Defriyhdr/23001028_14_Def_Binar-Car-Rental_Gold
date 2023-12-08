@@ -1,0 +1,113 @@
+.shadow-card {
+    border-color: #ededed;
+    border-radius: 8px;
+    background: var(--neutral-01, #FFF);
+    box-shadow: 0px 0px 4px 0px rgba(174, 174, 174, 0.15);
+}
+
+.header-detail-checkout-card {
+    position: absolute;
+    top: 190px;
+    margin: auto;
+    z-index: 2;
+}
+
+.text-sub-header-payment {
+    color: var(--neutral-01, #000);
+    font-family: Arial;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 22px;
+}
+
+.text-content-payment {
+    color: var(--neutral-03, #8A8A8A);
+    font-family: Arial;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 20px;
+}
+
+.text-bank {
+    color: var(--neutral-01, #000);
+    font-family: Arial;
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 18px;
+}
+
+.bank-card {
+    align-items: center;
+    width: 61px;
+    padding: 6px 16px;
+    border-radius: 4px;
+    border: 1px solid var(--neutral-02, #D0D0D0);
+    background: var(--neutral-01, #FFF);
+}
+
+.icon-checklist {
+    width: 24px;
+    height: 24px;
+}
+
+.icon-dropdown {
+    width: 24px;
+    height: 24px;
+}
+
+.select-bank {
+    display: flex;
+    justify-content: space-between;
+    width: 550px;
+}
+
+.hr {
+    color: #7f7f7fee;
+}
+
+.wrap-list {
+    display: flex;
+    justify-content: space-between;
+    min-width: 340px;
+}
+
+.wrap-card-dropdown {
+    display: flex;
+    flex-direction: column;
+    max-width: 440px;
+}
+
+.text-li {
+    color: var(--neutral-05, #151515);
+    font-family: Arial;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 20px;
+}
+
+.text-li-other {
+    color: var(--primary-lime-green-04, #5CB85F);
+    text-align: right;
+    font-family: Arial;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 20px;
+}
+
+.other-detail {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0px;
+    align-self: stretch;
+}
+
+.wrap-total {
+    display: inline-flex;
+    justify-content: space-between;
+}
