@@ -2,3 +2,18 @@
     width: 70%;
 }
 
+.button-submit-register {
+    background-color: #0D28A6;
+}
+
+.logo {
+    width: 100px;
+    height: 34px;
+    background-color: #CFD4ED;
+}
+
+#sign-in-here {
+    text-decoration: underline;
+    color: #0D28A6;
+    font-weight: bold;
+}
