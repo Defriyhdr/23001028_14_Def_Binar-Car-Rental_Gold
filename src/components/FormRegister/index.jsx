@@ -52,8 +52,8 @@ function FormRegister(){
                 ) : null
             }
 
-            <Link to={"/"} className="navbar-brand">
-                <img src={imgLogo} />
+            <Link to={"/"} className="navbar-brand logo">
+                {/* <img src={imgLogo} /> */}
             </Link>
 
             <h3><b>Sign Up</b></h3>
@@ -75,13 +75,13 @@ function FormRegister(){
             </Form>
 
             <div className="d-grid">
-                <Button variant="primary" type="submit" onClick={handleRegister} disabled={buttonDisable}>
+                <Button className="button-submit-register" type="submit" onClick={handleRegister} disabled={buttonDisable}>
                     Submit
                 </Button>
             </div>
 
             <div>
-                <p>Already have an account? <Link id="" to="/public/login">Sign In here</Link></p>
+                <p>Already have an account? <Link id="sign-in-here" to="/login">Sign In here</Link></p>
             </div>
 
         </div>
