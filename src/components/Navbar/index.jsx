@@ -2,11 +2,18 @@ import React from "react";
 import imgLogo from "../../assets/img/logo_car.png";
 import "../../components/Navbar/style.css";
 import { Link } from "react-router-dom";
-import { useLocation } from "react-router-dom";
-import Button from 'react-bootstrap/Button';
+import { useLocation, useNavigate } from "react-router-dom";
+import Button from "react-bootstrap/Button";
 
 const Navbar = () => {
   const { pathname } = useLocation();
+  const navigate = useNavigate();
+  const accesToken = localStorage.getItem("accesToken");
+
+  const handleLogOut = () => {
+    localStorage.removeItem("accesToken");
+    navigate("/");
+  };
 
   return (
     <>
@@ -26,12 +33,22 @@ const Navbar = () => {
           >
             <span className="navbar-toggler-icon"></span>
           </button>
-          <div className="offcanvas offcanvas-end" tabIndex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
+          <div
+            className="offcanvas offcanvas-end"
+            tabIndex="-1"
+            id="offcanvasNavbar"
+            aria-labelledby="offcanvasNavbarLabel"
+          >
             <div className="offcanvas-header pt-4">
               <h5 className="offcanvas-title" id="offcanvasNavbarLabel">
                 BCR
               </h5>
-              <button type="button" className="btn-close border-0" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+              <button
+                type="button"
+                className="btn-close border-0"
+                data-bs-dismiss="offcanvas"
+                aria-label="Close"
+              ></button>
             </div>
             <div className="offcanvas-body">
               <ul className="navbar-nav justify-content-end flex-grow-1 pe-3 gap-3">
@@ -80,9 +97,21 @@ const Navbar = () => {
                   )}
                 </li>
                 <li className="nav-item">
-                  <Link to={'/register'}>
-                    <Button variant="success" className="rounded"><b>Register</b></Button>
-                  </Link>
+                  {accesToken ? (
+                    <Button
+                      onClick={handleLogOut}
+                      variant="success"
+                      className="rounded"
+                    >
+                      Logout
+                    </Button>
+                  ) : (
+                    <Link to={"/register"}>
+                      <Button variant="success" className="rounded">
+                        <b>Register</b>
+                      </Button>
+                    </Link>
+                  )}
                 </li>
               </ul>
             </div>
