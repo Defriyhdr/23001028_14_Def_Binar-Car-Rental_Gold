@@ -7,15 +7,20 @@ import Footer from "../../components/Footer";
 import iconUserDetail from "../../assets/icon/fi_users.png";
 import iconDropdown from "../../assets/icon/icon_dropdown.png";
 import "../CarDetail/style.css";
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
+import moment from "moment";
 
 const CarDetail = () => {
   const param = useParams();
-
   const [list, setList] = useState();
-
   const dropDown = () => setList(!list);
-
   const [carsDetail, setcarsDetail] = useState({});
+
+  // calendar feature
+  const [durationRent, setDurationRent] = useState([null, null]);
+  const [firstDay, lastDay] = durationRent;
+  const [chooseCar, setChooseCar] = useState("");
 
   useEffect(() => {
     handleGetCarById();
@@ -30,6 +35,43 @@ const CarDetail = () => {
       })
       .catch((err) => console.log(err));
   };
+
+  // calendar feature
+  useEffect(() => {
+    let day = 0;
+
+    if (firstDay && lastDay) {
+      day = moment(lastDay).diff(moment(firstDay), "days") + 1;
+      setChooseCar(day);
+    } else {
+      setChooseCar(0);
+    }
+  }, [firstDay, lastDay]);
+
+  const handleCustomerOrder = () => {
+
+    const token = localStorage.getItem("accessToken")
+    const config = {
+      headers: {
+        Authorization: `Bearer ${token}`
+      }
+    }
+    axios
+      .post("https://api-car-rental.binaracademy.org/customer/order", config, {
+        car_id: Number(carsDetail.id),
+        start_rent: firstDay,
+        end_rent: lastDay,
+      })
+      .then((res) => {
+        console.log(res.data);
+      })
+      .catch((err) => console.log(err));
+  }
+
+  const hiddenButton = () => {
+    chooseCar(!setChooseCar);
+  };
+
 
   return (
     <div>
@@ -111,7 +153,33 @@ const CarDetail = () => {
                   <div className="d-flex justify-content-between mt-5">
                     <p className="detail-car-text">Total</p>
                     <p className="detail-car-text">{`Rp ${carsDetail.price}`}</p>
+                    <div>
+                    {/* calendar feature */}
+                    <DatePicker
+                    dateFormat="dd MMM yyyy"
+                    showIcon
+                    selectsRange={true}
+                    startDate={firstDay}
+                    endDate={lastDay}
+                    onChange={(update) => {
+                      setDurationRent(update);
+                    }}
+                    minDate={firstDay ? new Date(lastDay) : new Date()}
+                    maxDate={
+                      firstDay
+                        ? new Date(
+                            new Date(firstDay).setDate(
+                              new Date(firstDay).getDate() + 6
+                            )
+                          )
+                        : null
+                    }
+                    isClearable
+                    placeholderText="Pilih tanggal mulai dan tanggal akhir sewa" />
+                 <button disabled={!chooseCar} className='calendar-btn' onClick={handleCustomerOrder} > Pembayaran</button>
+                    </div>
                   </div>
+
                 </div>
               </div>
             </div>
