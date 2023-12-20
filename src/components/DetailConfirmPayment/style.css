@@ -1,0 +1,58 @@
+.confirm-payment-container{
+    display: grid;
+    margin-top: -250px;
+}
+
+.confirm-payment-container p, h1{
+    font-size: 13px;
+}
+
+.confirm-payment-container h1 {
+    font-size: 15px;
+}
+
+.due-date-payment {
+    padding-top: 12px;
+}
+
+.count-down{
+    text-align: right;
+    padding-top: 32px;
+}
+
+#bank-name {
+    display: flex;
+    width: 61px;
+    height: 50px;
+    padding: 6px 16px;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    margin-left: 13px;
+
+    border-radius: 4px;
+    border: 1px solid var(--Neutral-02, #D0D0D0);
+    background: var(--Neutral-01, #FFF);
+}
+
+#bank-name p {
+    margin: 0 !important;
+}
+
+.account-number {
+    border-radius: 4px;
+    border: 1px solid var(--Neutral-02, #D0D0D0);
+    background: var(--Neutral-01, #FFF);
+    padding: 5px 10px 5px 10px;
+    margin-left: 1px;
+}
+
+.account-number p{
+    margin-bottom: 0 !important;
+}
+
+#description-confirm-payment {
+    font-size: 13px !important;
+}
+
+
