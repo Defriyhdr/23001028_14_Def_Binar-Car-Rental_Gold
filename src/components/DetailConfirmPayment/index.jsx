@@ -2,6 +2,14 @@ import "./style.css";
 import { Tabs, TabList, TabPanels, Tab, TabPanel } from '@chakra-ui/react'
 import { CopyIcon } from '@chakra-ui/icons'
 import Button from 'react-bootstrap/Button';
+import Countdown, { zeroPad } from 'react-countdown';
+
+const renderer = ({ hours, minutes, seconds }) => (
+    <span>
+      {zeroPad(hours)}:{zeroPad(minutes)}:{zeroPad(seconds)}
+    </span>
+  );
+
 
 function DetailConfirmPayment() {
     return (
@@ -11,12 +19,14 @@ function DetailConfirmPayment() {
                     {/* card selesaikan pembayaran */}
                     <div className="card shadow-card mt-4 px-4 py-3">
                         <div className="row">
-                            <div className="col-md-6 due-date-payment">
+                            <div className="col-md-8 due-date-payment">
                                 <h1>Selesaikan Pembayaran Sebelum</h1>
                                 <p>Rabu, 19 Mei Jam 13.00 WIB</p>
                             </div>
-                            <div className="col-md-6 count-down">
-                                <div className="">Count Down</div>
+                            <div className="col-md-4 count-down">
+                                <div className="">
+                                    <Countdown date={Date.now() + 86400000} renderer={renderer} />
+                                </div>
                             </div>
                         </div>
                     </div>
