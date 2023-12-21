@@ -6,10 +6,7 @@
 }
 
 .header-detail-checkout-card {
-    position: absolute;
-    top: 190px;
-    margin: auto;
-    z-index: 2;
+    margin-top: -250px;
 }
 
 .text-sub-header-payment {
