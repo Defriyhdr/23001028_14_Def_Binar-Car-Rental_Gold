@@ -5,8 +5,8 @@ import Button from 'react-bootstrap/Button';
 import Countdown, { zeroPad } from 'react-countdown';
 
 const renderer = ({ hours, minutes, seconds }) => (
-    <span>
-      {zeroPad(hours)}:{zeroPad(minutes)}:{zeroPad(seconds)}
+    <span className="d-inline-flex countdown gap-1 align-items-center">
+      <p>{zeroPad(hours)}</p>:<p>{zeroPad(minutes)}</p>:<p>{zeroPad(seconds)}</p>
     </span>
   );
 

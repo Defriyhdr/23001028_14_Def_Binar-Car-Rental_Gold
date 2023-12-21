@@ -55,4 +55,11 @@
     font-size: 13px !important;
 }
 
+.countdown p {
+    margin: 0 !important;
+    background-color: red;
+    color: white;
+    padding: 2px;
+}
+
 
