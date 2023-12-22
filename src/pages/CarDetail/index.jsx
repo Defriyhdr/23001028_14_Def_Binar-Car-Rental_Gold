@@ -10,12 +10,14 @@ import "../CarDetail/style.css";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import moment from "moment";
+import { Link } from "react-router-dom";
 
 const CarDetail = () => {
   const param = useParams();
   const [list, setList] = useState();
   const dropDown = () => setList(!list);
   const [carsDetail, setcarsDetail] = useState({});
+
 
   // calendar feature
   const [durationRent, setDurationRent] = useState([null, null]);
@@ -35,6 +37,8 @@ const CarDetail = () => {
       })
       .catch((err) => console.log(err));
   };
+
+
 
   // calendar feature
   useEffect(() => {
@@ -149,12 +153,8 @@ const CarDetail = () => {
                         }
                       })()}
                     </span>
-                  </div>
-                  <div className="d-flex justify-content-between mt-5">
-                    <p className="detail-car-text">Total</p>
-                    <p className="detail-car-text">{`Rp ${carsDetail.price}`}</p>
                     <div>
-                    {/* calendar feature */}
+                     <p>  Tentukan lama sewa mobil (max. 7 hari)</p>
                     <DatePicker
                     dateFormat="dd MMM yyyy"
                     showIcon
@@ -174,12 +174,24 @@ const CarDetail = () => {
                           )
                         : null
                     }
-                    isClearable
+                    // isClearable
                     placeholderText="Pilih tanggal mulai dan tanggal akhir sewa" />
-                 <button disabled={!chooseCar} className='calendar-btn' onClick={handleCustomerOrder} > Pembayaran</button>
-                    </div>
                   </div>
+                  <div className="mt-3">
+               
+                     <Link to={`/test/ `}>
+                       <button disabled={!chooseCar} className='calendar-btn' onClick={handleCustomerOrder} > Pembayaran</button>
+                       </Link>
+                     
+                     </div>
 
+                   
+                  <div className="d-flex justify-content-between mt-5">
+                    <p className="detail-car-text">Total</p>
+                    <p className="detail-car-text">{`Rp ${carsDetail.price * chooseCar}`}</p>
+                  </div>
+                  </div>
+                     {/* calendar feature */}             
                 </div>
               </div>
             </div>
