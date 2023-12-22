@@ -18,6 +18,7 @@ const App = () => {
         <Route path="*" element={<NotFound />} />
         <Route path="/register" element={<Register />} />
 
+
       </Routes>
     </BrowserRouter>
   );
