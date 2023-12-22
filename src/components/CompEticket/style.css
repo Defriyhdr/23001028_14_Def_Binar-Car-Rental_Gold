@@ -1,0 +1,161 @@
+.confirm-payment-container {
+  display: grid;
+  margin-top: -250px;
+}
+
+.confirm-payment-container p,
+h1 {
+  font-size: 13px;
+}
+
+.invoice {
+  color: var(--Neutral-01, #000);
+  font-family: Arial;
+  font-size: 14px;
+  margin-top: 24px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 20px; /* 142.857% */
+  width: 299px;
+}
+
+.succes-buy {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-left: 300px;
+  margin-top: 16px;
+  width: 100%;
+  color: var(--Neutral-01, #000);
+  font-family: Arial;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 20px; /* 142.857% */
+}
+
+.invoice-tostaff {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-left: 300px;
+  margin-top: 16px;
+  width: 100%;
+  color: var(--Neutral-01, #8a8a8a);
+  font-family: Arial;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 20px; /* 142.857% */
+}
+
+.confirm-payment-container h1 {
+  font-size: 15px;
+}
+
+.due-date-payment {
+  padding-top: 12px;
+}
+
+.count-down {
+  text-align: right;
+  padding-top: 23px;
+}
+
+#bank-name {
+  display: flex;
+  width: 61px;
+  height: 50px;
+  padding: 6px 16px;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  margin-left: 13px;
+
+  border-radius: 4px;
+  border: 1px solid var(--Neutral-02, #d0d0d0);
+  background: var(--Neutral-01, #fff);
+}
+
+#bank-name p {
+  margin: 0 !important;
+}
+
+.account-number {
+  border-radius: 4px;
+  border: 1px solid var(--Neutral-02, #d0d0d0);
+  background: var(--Neutral-01, #fff);
+  padding: 5px 10px 5px 10px;
+  margin-left: 1px;
+}
+
+.account-number p {
+  margin-bottom: 0 !important;
+}
+
+#description-confirm-payment {
+  font-size: 13px !important;
+}
+
+.icon {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-left: 550px;
+}
+
+.elips {
+  background-color: #5cb85f;
+  width: 48px;
+  height: 48px;
+  flex-shrink: 0;
+  display: flex;
+  padding: 8px;
+  padding-left: 10px;
+  border-radius: 50%;
+  justify-content: center;
+  align-items: center;
+  margin-right: 16px;
+}
+
+#box-pdf {
+  width: 605px;
+  height: 290px;
+  margin-bottom: 160px;
+  margin-left: 250px;
+}
+
+#box-filepdf {
+  width: 557px;
+  height: 162px;
+  margin-bottom: 160px;
+}
+
+#button-dowloadpdf {
+  display: flex;
+  position: absolute;
+  margin-top: 10px;
+  margin-left: 450px;
+  justify-content: flex-end;
+  width: 100px;
+  padding: 0px;
+}
+#button-dowloadpdf .unduh {
+  padding: 8px 12px 8px 0px;
+  margin: 0px;
+}
+
+.svg-dowload {
+  display: flex;
+  margin-right: 10px;
+  margin-top: 3px;
+}
+
+canvas {
+  width: 416px;
+  height: 10px;
+}
+
+.rpv-core__text-layer {
+  display: none;
+}

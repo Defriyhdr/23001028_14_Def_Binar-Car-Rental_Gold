@@ -7,6 +7,7 @@ import NotFound from "./pages/NotFound";
 import Payment from "./pages/Payment";
 import Payment3 from "./pages/Payment3";
 import { ChakraProvider } from '@chakra-ui/react'
+import Eticket from "./pages/Eticket";
 
 const App = () => {
   return (
@@ -18,6 +19,7 @@ const App = () => {
           <Route path="/car/:id" element={<CarDetail />} />
           <Route path="/car/:id/payment" element={<Payment />} />
           <Route path="/car/:id/payment3" element={<Payment3 />} />
+          <Route path="/car/:id/eticket" element={<Eticket/>} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </BrowserRouter>

@@ -6,6 +6,9 @@ import ButtonPayment from "../ButtonPayment";
 import "./style.css";
 
 const DetailCheckoutCard = () => {
+
+
+  
   return (
     <div className="container px-5 header-detail-checkout-card">
       {/* detail pesanan */}
