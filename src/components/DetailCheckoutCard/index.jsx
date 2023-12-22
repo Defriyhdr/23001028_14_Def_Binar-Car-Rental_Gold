@@ -4,8 +4,36 @@ import iconDropdown from "../../assets/icon/icon_dropdown.png";
 import iconChecklist from "../../assets/icon/fi_check.png";
 import ButtonPayment from "../ButtonPayment";
 import "./style.css";
+import axios from "axios";
+import { useState, useEffect } from "react";
+import { useParams } from "react-router-dom";
 
 const DetailCheckoutCard = () => {
+  const param = useParams();
+
+  const [listDetail, setListDetail] = useState({});
+
+  useEffect(() => {
+    handleGetAllList();
+  }, []);
+
+  const handleGetAllList = () => {
+    axios
+      .get(
+        `https://api-car-rental.binaracademy.org/customer/car/
+        ${param.id}`
+      )
+      .then((res) => {
+        console.log(res.data);
+        setListDetail(res.data);
+      })
+      .catch((err) => console.log(err));
+  };
+
+  const handleGetDateList = () => {
+    axios;
+  };
+
   return (
     <div className="container px-5 header-detail-checkout-card">
       {/* detail pesanan */}
@@ -14,15 +42,25 @@ const DetailCheckoutCard = () => {
         <div className="row">
           <div className="col-3">
             <p className="text-sub-header-payment my-2">Nama/Tipe Mobil</p>
-            <p className="text-content-payment">Innova</p>
+            <p className="text-content-payment">{listDetail.name}</p>
           </div>
           <div className="col-3">
             <p className="text-sub-header-payment my-2">Kategori</p>
-            <p className="text-content-payment">6-8 Orang</p>
+            <p className="text-content-payment">
+              {(() => {
+                if (listDetail.category == "small") {
+                  return "2 - 4 Orang";
+                } else if (listDetail.category == "medium") {
+                  return "4 - 6 Orang";
+                } else {
+                  return "6 - 8 Orang";
+                }
+              })()}
+            </p>
           </div>
           <div className="col-3">
             <p className="text-sub-header-payment my-2">Tanggal Mulai Sewa</p>
-            <p className="text-content-payment">2 Jun 2022</p>
+            <p className="text-content-payment">{listDetail.createdAt}</p>
           </div>
           <div className="col-3">
             <p className="text-sub-header-payment my-2">Tanggal Akhir Sewa</p>
@@ -34,7 +72,7 @@ const DetailCheckoutCard = () => {
       </div>
       {/* detail pesanan */}
 
-      {/* pilih bank tf*/}
+{/* pilih bank tf*/}
       <div className="row">
         {/* left */}
         <div className="col-8">
