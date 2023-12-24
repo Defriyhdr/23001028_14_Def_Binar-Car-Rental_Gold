@@ -6,18 +6,18 @@ import Navbar from "../../components/Navbar";
 import Footer from "../../components/Footer";
 import iconUserDetail from "../../assets/icon/fi_users.png";
 import iconDropdown from "../../assets/icon/icon_dropdown.png";
-import "../CarDetail/style.css";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import moment from "moment";
 import { Link } from "react-router-dom";
+import ButtonNextPayment from "../../components/ButtonNextPayment";
+import "../CarDetail/style.css";
 
 const CarDetail = () => {
   const param = useParams();
   const [list, setList] = useState();
   const dropDown = () => setList(!list);
   const [carsDetail, setcarsDetail] = useState({});
-
 
   // calendar feature
   const [durationRent, setDurationRent] = useState([null, null]);
@@ -38,8 +38,6 @@ const CarDetail = () => {
       .catch((err) => console.log(err));
   };
 
-
-
   // calendar feature
   useEffect(() => {
     let day = 0;
@@ -53,13 +51,12 @@ const CarDetail = () => {
   }, [firstDay, lastDay]);
 
   const handleCustomerOrder = () => {
-
-    const token = localStorage.getItem("accessToken")
+    const token = localStorage.getItem("accessToken");
     const config = {
       headers: {
-        Authorization: `Bearer ${token}`
-      }
-    }
+        Authorization: `Bearer ${token}`,
+      },
+    };
     axios
       .post("https://api-car-rental.binaracademy.org/customer/order", config, {
         car_id: Number(carsDetail.id),
@@ -70,12 +67,11 @@ const CarDetail = () => {
         console.log(res.data);
       })
       .catch((err) => console.log(err));
-  }
+  };
 
   const hiddenButton = () => {
     chooseCar(!setChooseCar);
   };
-
 
   return (
     <div>
@@ -89,7 +85,9 @@ const CarDetail = () => {
                 <div className="mt-4">
                   <h2 className="sub-detail-text">Include</h2>
                   <ul className="ps-4">
-                    <li className="content-detail-text">Apa saja yang termasuk dalam paket misal durasi max 12 jam</li>
+                    <li className="content-detail-text">
+                      Apa saja yang termasuk dalam paket misal durasi max 12 jam
+                    </li>
                     <li className="content-detail-text">Sudah termasuk bensin selama 12 jam</li>
                     <li className="content-detail-text">Sudah termasuk Tiket Wisata</li>
                     <li className="content-detail-text">Sudah termasuk pajak</li>
@@ -98,7 +96,9 @@ const CarDetail = () => {
                 <div className="mt-4">
                   <h2 className="sub-detail-text">Exclude</h2>
                   <ul className="ps-4">
-                    <li className="content-detail-text ">Tidak termasuk biaya makan sopir Rp 75.000/hari</li>
+                    <li className="content-detail-text ">
+                      Tidak termasuk biaya makan sopir Rp 75.000/hari
+                    </li>
                     <li className="content-detail-text ">
                       Jika overtime lebih dari 12 jam akan ada tambahan biaya Rp 20.000/jam
                     </li>
@@ -112,17 +112,23 @@ const CarDetail = () => {
                   </div>
                   {list && (
                     <ul className="ps-4 mt-1 ">
-                      <li className="content-detail-text">Tidak termasuk biaya makan sopir Rp 75.000/hari</li>
+                      <li className="content-detail-text">
+                        Tidak termasuk biaya makan sopir Rp 75.000/hari
+                      </li>
                       <li className="content-detail-text">
                         Jika overtime lebih dari 12 jam akan ada tambahan biaya Rp 20.000/jam
                       </li>
                       <li className="content-detail-text">Tidak termasuk akomodasi penginapan</li>
-                      <li className="content-detail-text">Tidak termasuk biaya makan sopir Rp 75.000/hari</li>
+                      <li className="content-detail-text">
+                        Tidak termasuk biaya makan sopir Rp 75.000/hari
+                      </li>
                       <li className="content-detail-text">
                         Jika overtime lebih dari 12 jam akan ada tambahan biaya Rp 20.000/jam
                       </li>
                       <li className="content-detail-text">Tidak termasuk akomodasi penginapan</li>
-                      <li className="content-detail-text">Tidak termasuk biaya makan sopir Rp 75.000/hari</li>
+                      <li className="content-detail-text">
+                        Tidak termasuk biaya makan sopir Rp 75.000/hari
+                      </li>
                       <li className="content-detail-text">
                         Jika overtime lebih dari 12 jam akan ada tambahan biaya Rp 20.000/jam
                       </li>
@@ -154,44 +160,42 @@ const CarDetail = () => {
                       })()}
                     </span>
                     <div>
-                     <p>  Tentukan lama sewa mobil (max. 7 hari)</p>
-                    <DatePicker
-                    dateFormat="dd MMM yyyy"
-                    showIcon
-                    selectsRange={true}
-                    startDate={firstDay}
-                    endDate={lastDay}
-                    onChange={(update) => {
-                      setDurationRent(update);
-                    }}
-                    minDate={firstDay ? new Date(lastDay) : new Date()}
-                    maxDate={
-                      firstDay
-                        ? new Date(
-                            new Date(firstDay).setDate(
-                              new Date(firstDay).getDate() + 6
-                            )
-                          )
-                        : null
-                    }
-                    // isClearable
-                    placeholderText="Pilih tanggal mulai dan tanggal akhir sewa" />
-                  </div>
-                  <div className="mt-3">
-               
-                     <Link to={`/test/ `}>
-                       <button disabled={!chooseCar} className='calendar-btn' onClick={handleCustomerOrder} > Pembayaran</button>
-                       </Link>
-                     
-                     </div>
+                      <p> Tentukan lama sewa mobil (max. 7 hari)</p>
+                      <DatePicker
+                        dateFormat="dd MMM yyyy"
+                        showIcon
+                        selectsRange={true}
+                        startDate={firstDay}
+                        endDate={lastDay}
+                        onChange={(update) => {
+                          setDurationRent(update);
+                        }}
+                        minDate={firstDay ? new Date(lastDay) : new Date()}
+                        maxDate={
+                          firstDay
+                            ? new Date(new Date(firstDay).setDate(new Date(firstDay).getDate() + 6))
+                            : null
+                        }
+                        // isClearable
+                        placeholderText="Pilih tanggal mulai dan tanggal akhir sewa"
+                      />
+                    </div>
 
-                   
-                  <div className="d-flex justify-content-between mt-5">
-                    <p className="detail-car-text">Total</p>
-                    <p className="detail-car-text">{`Rp ${carsDetail.price * chooseCar}`}</p>
+                    <div className="d-flex justify-content-between mt-2">
+                      <p className="detail-car-text">Total</p>
+                      <p className="detail-car-text">{`Rp ${carsDetail.price * chooseCar}`}</p>
+                    </div>
+
+                    <div>
+                      <Link to={`/car/${carsDetail.id}/payment`}>
+                        <ButtonNextPayment disabled={!chooseCar} onClick={handleCustomerOrder}>
+                          {" "}
+                          Pembayaran
+                        </ButtonNextPayment>
+                      </Link>
+                    </div>
                   </div>
-                  </div>
-                     {/* calendar feature */}             
+                  {/* calendar feature */}
                 </div>
               </div>
             </div>
