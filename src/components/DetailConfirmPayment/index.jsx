@@ -129,7 +129,7 @@ function DetailConfirmPayment() {
                                     </div>
                                     <div className="col-4 count-down pt-2">
                                         <div className="">
-                                            <Countdown date={Date.now() + 50000000} renderer={renderer2} />
+                                            <Countdown date={Date.now() + 900000} renderer={renderer2} />
                                         </div>
                                     </div>
                                 </div>
