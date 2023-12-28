@@ -62,4 +62,13 @@
     padding: 2px;
 }
 
+.title-upload-payment p{
+    font-size: 15px !important;
+}
+
+.upload-image{
+    background-color: #EEE;
+    height: 200px;
+}
+
 

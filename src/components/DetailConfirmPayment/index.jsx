@@ -3,6 +3,7 @@ import { Tabs, TabList, TabPanels, Tab, TabPanel } from '@chakra-ui/react'
 import { CopyIcon } from '@chakra-ui/icons'
 import Button from 'react-bootstrap/Button';
 import Countdown, { zeroPad } from 'react-countdown';
+import { useState } from "react";
 
 const renderer = ({ hours, minutes, seconds }) => (
     <span className="d-inline-flex countdown gap-1 align-items-center">
@@ -10,8 +11,38 @@ const renderer = ({ hours, minutes, seconds }) => (
     </span>
   );
 
+  const renderer2 = ({minutes, seconds }) => (
+    <span className="d-inline-flex countdown gap-1 align-items-center">
+      <p>{zeroPad(minutes)}</p>:<p>{zeroPad(seconds)}</p>
+    </span>
+  );
+
 
 function DetailConfirmPayment() {
+
+    const [isConfirmPayment, setIsConfirmPayment] = useState(false)
+
+    const [image, setImage] = useState({ preview: "", raw: "" });
+
+    const handleChange = e => {
+        if (e.target.files.length) {
+        setImage({
+            preview: URL.createObjectURL(e.target.files[0]),
+            raw: e.target.files[0]
+        });
+        }
+    };
+
+    function handleConfirmPayment() {
+        setIsConfirmPayment(true)
+    }
+
+    function handleUpload() {
+        console.log(image.raw.name)
+
+        //nanti di tambahin put upload bukti transfer, membutuhkan redux 
+    }
+
     return (
        <div className="px-5 confirm-payment-container">
             <div className="row">
@@ -88,12 +119,68 @@ function DetailConfirmPayment() {
                     </div>
                 </div>
                 <div className="col-md-6">
-                    {/* card selesaikan pembayaran */}
-                    <div className="card shadow-card mt-4 px-4 py-3">
-                        <p id="description-confirm-payment">Klik konfirmasi pembayaran untuk mempercepat proses pengecekan</p>
-                        <Button variant="success"><b>Konfirmasi Pembayaran</b></Button>
-                    </div>
+
+                    {
+                        isConfirmPayment ? (
+                            <div className="card shadow-card mt-4 px-4 py-3">
+                                <div className="row">
+                                    <div className="col-8 due-date-payment">
+                                        <h1>Konfirmasi Pembayaran</h1>
+                                    </div>
+                                    <div className="col-4 count-down pt-2">
+                                        <div className="">
+                                            <Countdown date={Date.now() + 50000000} renderer={renderer2} />
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div className="mt-3">
+                                    <p>Terima kasih telah melakukan konfirmasi pembayaran. <br /> Pembayaranmu akan segera kami cek tunggu kurang lebih 10 menit untuk mendapatkan konfirmasi.</p>
+                                </div>
+
+                                <div className="title-upload-payment mt-1">
+                                    <p>Upload Bukti Pembayaran</p>
+                                </div>
+
+                                <div className="mt-1">
+                                    <p>Untuk membantu kami lebih cepat melakukan pengecekan. Kamu bisa upload bukti bayarmu</p>
+                                </div>  
+                                <div className="upload-image d-grid justify-content-center align-items-center">
+                                    <label htmlFor="upload-button">
+                                        {image.preview ? (
+                                        <img src={image.preview} alt="dummy" width="300" height="300" />
+                                        ) : (
+                                        <>
+                                            
+
+                                                <span className="fa-stack fa-2x">
+                                                    {/* <i className="fas fa-circle fa-stack-2x" />
+                                                    <i className="fas fa-store fa-stack-1x fa-inverse" /> */}
+                                                    <i class="fa-regular fa-image fa-stack-1x"></i>
+                                                </span>
+                                        </>
+                                        )}
+                                    </label>
+                                    <input
+                                        type="file"
+                                        id="upload-button"
+                                        style={{ display: "none" }}
+                                        onChange={handleChange}
+                                    />
+                                </div>
+                                <Button className="mb-3 mt-3" variant="success" onClick={handleUpload}><b>Upload</b></Button>  
+                            </div>
+                        ) : (
+                            <div className="card shadow-card mt-4 px-4 py-3">
+                                <p id="description-confirm-payment">Klik konfirmasi pembayaran untuk mempercepat proses pengecekan</p>
+                                <Button variant="success" onClick={handleConfirmPayment}><b>Konfirmasi Pembayaran</b></Button>
+                            </div>
+                        )
+                    }
+                    
                 </div>
+
+                   
             </div>
        </div>
     );
