@@ -72,7 +72,7 @@ const DetailCheckoutCard = () => {
       </div>
       {/* detail pesanan */}
 
-{/* pilih bank tf*/}
+      {/* pilih bank tf*/}
       <div className="row">
         {/* left */}
         <div className="col-8">
