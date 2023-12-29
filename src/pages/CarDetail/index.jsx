@@ -11,12 +11,16 @@ import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import moment from "moment";
 import { Link } from "react-router-dom";
+import { orderCar } from "../../redux/features/order/orderSlice";
+import { useDispatch, useSelector } from "react-redux";
 
 const CarDetail = () => {
   const param = useParams();
+  const carById = useParams();
   const [list, setList] = useState();
   const dropDown = () => setList(!list);
   const [carsDetail, setcarsDetail] = useState({});
+  const dispatch = useDispatch();
 
   // calendar feature
   const [durationRent, setDurationRent] = useState([null, null]);
@@ -49,23 +53,34 @@ const CarDetail = () => {
     }
   }, [firstDay, lastDay]);
 
+  // const handleCustomerOrder = () => {
+
+  //   const token = localStorage.getItem("accessToken")
+  //   const config = {
+  //     headers: {
+  //       Authorization: `Bearer ${token}`
+  //     }
+  //   }
+  //   axios
+  //     .post("https://api-car-rental.binaracademy.org/customer/order", config, {
+  //       car_id: Number(carsDetail.id),
+  //       start_rent: firstDay,
+  //       end_rent: lastDay,
+  //     })
+  //     .then((res) => {
+  //       console.log(res.data);
+  //     })
+  //     .catch((err) => console.log(err));
+  // }
+
   const handleCustomerOrder = () => {
-    const token = localStorage.getItem("accessToken");
-    const config = {
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-    };
-    axios
-      .post("https://api-car-rental.binaracademy.org/customer/order", config, {
-        car_id: Number(carsDetail.id),
-        start_rent: firstDay,
-        end_rent: lastDay,
+    dispatch(
+      orderCar({
+        start_rent_at: moment(durationRent[0]).format("YYYY-MM-DD"),
+        finish_rent_at: moment(durationRent[1]).format("YYYY-MM-DD"),
+        car_id: Number(carById.id),
       })
-      .then((res) => {
-        console.log(res.data);
-      })
-      .catch((err) => console.log(err));
+    );
   };
 
   const hiddenButton = () => {
@@ -180,12 +195,8 @@ const CarDetail = () => {
                       />
                     </div>
                     <div className="mt-3">
-                      <Link to={`/car/${carsDetail.id}/payment `}>
-                        <button
-                          disabled={!chooseCar}
-                          className="calendar-btn"
-                          onClick={handleCustomerOrder}
-                        >
+                      <Link to={`/car/${carsDetail.id}/payment`}>
+                        <button disabled={!chooseCar} onClick={handleCustomerOrder}>
                           {" "}
                           Pembayaran
                         </button>
