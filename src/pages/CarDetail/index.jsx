@@ -1,5 +1,5 @@
 import React from "react";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import axios from "axios";
 import { useState, useEffect } from "react";
 import Navbar from "../../components/Navbar";
@@ -21,6 +21,7 @@ const CarDetail = () => {
   const dropDown = () => setList(!list);
   const [carsDetail, setcarsDetail] = useState({});
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   // calendar feature
   const [durationRent, setDurationRent] = useState([null, null]);
@@ -81,6 +82,9 @@ const CarDetail = () => {
         car_id: Number(carById.id),
       })
     );
+    setTimeout(() => {
+      navigate(`/car/${carsDetail.id}/payment`);
+    }, 500);
   };
 
   const hiddenButton = () => {
@@ -195,12 +199,12 @@ const CarDetail = () => {
                       />
                     </div>
                     <div className="mt-3">
-                      <Link to={`/car/${carsDetail.id}/payment`}>
-                        <button disabled={!chooseCar} onClick={handleCustomerOrder}>
-                          {" "}
-                          Pembayaran
-                        </button>
-                      </Link>
+                      {/* <Link to={`/car/${carsDetail.id}/payment`}> */}
+                      <button disabled={!chooseCar} onClick={handleCustomerOrder}>
+                        {" "}
+                        Pembayaran
+                      </button>
+                      {/* </Link> */}
                     </div>
 
                     <div className="d-flex justify-content-between mt-5">
