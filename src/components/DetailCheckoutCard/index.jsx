@@ -1,37 +1,74 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
+import { useParams } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
+import { useNavigate } from "react-router";
+import { updateBankName } from "../../redux/features/bank/bankSlice";
+import moment from "moment";
+
+import { Accordion } from "react-bootstrap";
+import { FaCheck } from "react-icons/fa";
 import iconUserDetail from "../../assets/icon/fi_users.png";
-import iconDropdown from "../../assets/icon/icon_dropdown.png";
-import iconChecklist from "../../assets/icon/fi_check.png";
 import ButtonPayment from "../ButtonPayment";
+import BCAIcon from "../../assets/icon/icon-BCA.svg";
+import BNIIcon from "../../assets/icon/icon-BCA.svg";
+import MandiriIcon from "../../assets/icon/icon-Mandiri.svg";
 import "./style.css";
 import axios from "axios";
-import { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
 
 const DetailCheckoutCard = () => {
+  const banks = [
+    {
+      id: "BCA",
+      name: "BCA Transfer",
+      isChecked: false,
+      pathIcon: `${BCAIcon}`,
+    },
+    {
+      id: "BNI",
+      name: "BNI Transfer",
+      isChecked: false,
+      pathIcon: `${BNIIcon}`,
+    },
+    {
+      id: "Mandiri",
+      name: "Mandiri Transfer",
+      isChecked: false,
+      pathIcon: `${MandiriIcon}`,
+    },
+  ];
+
+  const [carsDetail, setCarsDetail] = useState({});
+  const [isBankChecked, setBankChecked] = useState(false);
   const param = useParams();
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const { order, bank } = useSelector((state) => state);
 
-  const [listDetail, setListDetail] = useState({});
-
-  useEffect(() => {
-    handleGetAllList();
-  }, []);
-
-  const handleGetAllList = () => {
-    axios
-      .get(
-        `https://api-car-rental.binaracademy.org/customer/car/
-        ${param.id}`
-      )
-      .then((res) => {
-        console.log(res.data);
-        setListDetail(res.data);
-      })
-      .catch((err) => console.log(err));
+  const handleChooseBank = (id) => {
+    dispatch(updateBankName(id));
+    setBankChecked(true);
   };
 
-  const handleGetDateList = () => {
-    axios;
+  const handlePaymentConfirm = () => {
+    // navigate(`/car/${carsDetail.id}/payment3`);
+  };
+
+  useEffect(() => {
+    getCarDetail(param.id);
+    if (Object.keys(bank.bankName).length > 0) {
+      setBankChecked(true);
+    }
+    console.log(Object.keys(bank.bankName).length > 0);
+  }, []);
+
+  const getCarDetail = (id) => {
+    axios
+      .get(`https://api-car-rental.binaracademy.org/customer/car/${id}`)
+      .then((res) => {
+        setCarsDetail(res.data);
+      })
+      .catch((err) => console.log(err));
   };
 
   return (
@@ -42,15 +79,15 @@ const DetailCheckoutCard = () => {
         <div className="row">
           <div className="col-3">
             <p className="text-sub-header-payment my-2">Nama/Tipe Mobil</p>
-            <p className="text-content-payment">{listDetail.name}</p>
+            <p className="text-content-payment">{carsDetail.name}</p>
           </div>
           <div className="col-3">
             <p className="text-sub-header-payment my-2">Kategori</p>
             <p className="text-content-payment">
               {(() => {
-                if (listDetail.category == "small") {
+                if (carsDetail.category == "small") {
                   return "2 - 4 Orang";
-                } else if (listDetail.category == "medium") {
+                } else if (carsDetail.category == "medium") {
                   return "4 - 6 Orang";
                 } else {
                   return "6 - 8 Orang";
@@ -60,136 +97,136 @@ const DetailCheckoutCard = () => {
           </div>
           <div className="col-3">
             <p className="text-sub-header-payment my-2">Tanggal Mulai Sewa</p>
-            <p className="text-content-payment">{listDetail.createdAt}</p>
+            <p className="text-content-payment">
+              {moment(order.list_date.start_rent_at).format("DD MMMM YYYY")}
+            </p>
           </div>
           <div className="col-3">
             <p className="text-sub-header-payment my-2">Tanggal Akhir Sewa</p>
             <p text className="text-content-payment">
-              8 Juni 2022
+              {moment(order.list_date.finish_rent_at).format("DD MMMM YYYY")}
             </p>
           </div>
         </div>
       </div>
       {/* detail pesanan */}
 
-{/* pilih bank tf*/}
+      {/* choosepayment */}
       <div className="row">
         {/* left */}
-        <div className="col-8">
+        <div className="col-lg-7">
           <div className="card shadow-card mt-4 px-4 py-3">
             <h1 className="text-header-payment my-2">Pilih Bank Transfer</h1>
             <p className="text-sub-header-payment">
               Kamu bisa membayar dengan transfer melalui ATM, Internet Banking atau Mobile Banking
             </p>
-            <div className="mt-3">
-              <div className="d-flex gap-4">
-                <div className="card justify-content-center bank-card text-bank">BCA</div>
-                <div className="select-bank">
-                  <p className="my-auto text-bank">BCA Transfer</p>
-                  {/* <img className="icon-checklist my-auto" src={iconChecklist} /> */}
-                </div>
-              </div>
-              <hr className="hr" />
+            <div>
+              <ul className="list-group list-group-flush mt-3">
+                {banks.map((bankDetail) => (
+                  <li
+                    className={`list-group-item d-flex justify-content-between px-0`}
+                    key={bankDetail.id}
+                    onClick={() => handleChooseBank(bankDetail.id)}
+                  >
+                    <div className="d-flex my-2">
+                      <img
+                        className="me-3"
+                        src={bankDetail.pathIcon}
+                        alt={`icon-${bankDetail.id}`}
+                      />
+                      <p className="my-auto text-bank">{bankDetail.name}</p>
+                    </div>
+                    {bankDetail.id == bank.bankName ? (
+                      <div style={{ margin: "auto 10px" }}>
+                        <FaCheck style={{ color: "5CB85F", fontSize: "18px" }} />
+                      </div>
+                    ) : null}
+                  </li>
+                ))}
+                <li className="list-group-item"></li>
+              </ul>
             </div>
-            <div className="mt-1">
-              <div className="d-flex gap-4">
-                <div className="card justify-content-center bank-card text-bank">BNI</div>
-                <div className="select-bank">
-                  <p className="my-auto text-bank">BNI Transfer</p>
-                  {/* <img className="icon-checklist my-auto" src={iconChecklist} /> */}
-                </div>
-              </div>
-              <hr className="hr" />
+          </div>
+        </div>
+        {/* left */}
+
+        {/* right */}
+        <div className="col-lg-5">
+          <div className="card shadow-card mt-4 px-4 py-3">
+            <h1 className="text-header-payment">{carsDetail.name}</h1>
+            <div className="d-inline-flex gap-1">
+              <img className="icon-detail me-2" src={iconUserDetail} />
+              <span className="type-detail">
+                {(() => {
+                  if (carsDetail.category == "small") {
+                    return "2 - 4 Orang";
+                  } else if (carsDetail.category == "medium") {
+                    return "4 - 6 Orang";
+                  } else {
+                    return "6 - 8 Orang";
+                  }
+                })()}
+              </span>
             </div>
-            <div className="mt-1">
-              <div className="d-flex gap-4">
-                <div className="card justify-content-center bank-card text-bank">Mandiri</div>
-                <div className="select-bank">
-                  <p className="my-auto text-bank">Mandiri Transfer</p>
-                  {/* <img className="icon-checklist my-auto" src={iconChecklist} /> */}
-                </div>
-              </div>
-              <hr className="hr" />
-            </div>
+
+            <Accordion className="mt-3 mb-1" defaultActiveKey="0" flush>
+              <Accordion.Item eventKey="0">
+                <Accordion.Header className="text-header-payment">
+                  <div className="d-flex">
+                    <p className="text-content-payment mb-0 me-3">Total</p>
+                    <p className="text-header-payment mb-0">Rp {order.list_date.total_price}</p>
+                  </div>
+                </Accordion.Header>
+                <Accordion.Body>
+                  <form>
+                    <h6 className="text-header-payment">Harga</h6>
+                    <ul className="mt-1 mb-3">
+                      <div className="d-flex justify-content-between">
+                        <li className="text-sub-header-payment">
+                          Sewa Mobil Rp {carsDetail.price} x{" "}
+                          {moment(order.list_date.finish_rent_at).diff(
+                            moment(order.list_date.start_rent_at),
+                            "days"
+                          ) + 1}{" "}
+                          Hari
+                        </li>
+                        <h6 className="text-sub-header-payment">{order.list_date.total_price}</h6>
+                      </div>
+                    </ul>
+                    <h6 className="text-header-payment">Biaya Lainnya</h6>
+                    <ul className="mt-3 mb-3">
+                      <div className="d-flex justify-content-between">
+                        <li className="text-sub-header-payment">Pajak</li>
+                        <p className="text-success">Termasuk</p>
+                      </div>
+                      <div className="d-flex justify-content-between">
+                        <li className="text-sub-header-payment">Biaya makan sopir</li>
+                        <p className="text-success">Termasuk</p>
+                      </div>
+                    </ul>
+                    <h6 className="text-header-payment">Belum Termasuk</h6>
+                    <ul className="mt-3 mb-4">
+                      <li className="text-sub-header-payment">Bensin</li>
+                      <li className="text-sub-header-payment mt-3">Tol dan parkir</li>
+                    </ul>
+                    <hr className="bg-primary"></hr>
+                    <div className="d-flex justify-content-between mb-1">
+                      <p className="text-header-payment">Total </p>
+                      <p className="text-header-payment">{order.list_date.total_price}</p>
+                    </div>
+                    <ButtonPayment
+                      onClick={handlePaymentConfirm}
+                      isDisabled={!isBankChecked}
+                    ></ButtonPayment>
+                  </form>
+                </Accordion.Body>
+              </Accordion.Item>
+            </Accordion>
           </div>
         </div>
         {/* right */}
-        <div className="col-4">
-          <div className="card shadow-card mt-4 px-4 py-3">
-            <h1 className="text-header-payment">Innova</h1>
-            <div className="d-inline-flex gap-1">
-              <img className="icon-detail me-2" src={iconUserDetail} />
-              <span className="type-detail">6-8 orang</span>
-            </div>
-
-            <div className="d-inline-flex mt-5">
-              <div className="d-inline-flex gap-2">
-                <p className="text-sub-header-payment me-auto my-2 ">Total</p>
-                <img className="icon-dropdown my-2" src={iconDropdown} />
-              </div>
-              <h1 className="text-header-payment ms-auto my-2">Rp 3.500.000</h1>
-            </div>
-
-            {/*  */}
-            <div className="wrap-card-dropdown">
-              <div className="other-detail">
-                <h1 className="text-header-payment mt-2">Harga</h1>
-                <div className="wrap-list my-2">
-                  <ul className="ps-4">
-                    <li className="text-li">Sewa Mobil Rp.500.000 x 7 Hari</li>
-                  </ul>
-                  <span className="text-li">Rp 3.500.000</span>
-                </div>
-              </div>
-
-              <div className="other-detail">
-                <h1 className="text-header-payment mt-2">Biaya Lainnya</h1>
-                <div className="wrap-list mt-2">
-                  <ul className="ps-4">
-                    <li className="text-li">Pajak</li>
-                  </ul>
-                  <span className="text-li-other">Termasuk</span>
-                </div>
-                <div className="wrap-list mb-2">
-                  <ul className="ps-4">
-                    <li className="text-li">Biaya makan sopir</li>
-                  </ul>
-                  <span className="text-li-other">Termasuk</span>
-                </div>
-              </div>
-
-              <div className="other-detail">
-                <h1 className="text-header-payment mt-2">Belum Termasuk</h1>
-                <div className="d-inline-flex mt-2">
-                  <ul className="ps-4">
-                    <li className="text-li">Bensin</li>
-                  </ul>
-                </div>
-                <div className="d-inline-flex mb-2">
-                  <ul className="ps-4">
-                    <li className="text-li">Tol dan parkir</li>
-                  </ul>
-                </div>
-              </div>
-            </div>
-            <hr className="hr" />
-
-            <div className="wrap-total">
-              <h1 className="text-header-payment">Total</h1>
-              <h1 className="text-header-payment">Rp 3.500.000</h1>
-            </div>
-
-            <div className="mt-3">
-              <ButtonPayment />
-            </div>
-          </div>
-        </div>
       </div>
-
-      {/* pilih bank tf */}
-
-      {/* card detail */}
-      {/* card detail */}
+      {/* choosepayment */}
     </div>
   );
 };

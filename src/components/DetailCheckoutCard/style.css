@@ -108,3 +108,48 @@
     display: inline-flex;
     justify-content: space-between;
 }
+
+.bankChoicePoint {
+    cursor: pointer;
+}
+
+.bankName {
+    margin-left: 30px;
+}
+
+.accordion-item .accordion-header button.accordion-button::after {
+    background-color: white;
+    color: #000000;
+}
+
+.accordion-button:focus {
+    border: white;
+    border: 0px;
+    box-shadow: none;
+}
+
+.accordion-flush .accordion-item .accordion-button,
+.accordion-flush .accordion-item .accordion-button.collapsed {
+    border-radius: 0;
+}
+
+.accordion-button:not(.collapsed) {
+    color: black;
+    background-color: white;
+    border: 0px;
+    box-shadow: none;
+
+}
+
+.accordion-button {
+    border: 0px;
+}
+
+.accordion-body {
+    padding: 0px;
+}
+
+.accordion-button {
+    padding-left: 0px;
+    padding-right: 0px;
+}
