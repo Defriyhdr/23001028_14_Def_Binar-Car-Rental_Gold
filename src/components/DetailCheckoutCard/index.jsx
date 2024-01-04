@@ -39,6 +39,7 @@ const DetailCheckoutCard = () => {
   ];
 
   const [carsDetail, setCarsDetail] = useState({});
+  const [isBankChecked, setBankChecked] = useState(false);
   const param = useParams();
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -46,6 +47,7 @@ const DetailCheckoutCard = () => {
 
   const handleChooseBank = (id) => {
     dispatch(updateBankName(id));
+    setBankChecked(true);
   };
 
   const handlePaymentConfirm = () => {
@@ -54,6 +56,10 @@ const DetailCheckoutCard = () => {
 
   useEffect(() => {
     getCarDetail(param.id);
+    if (Object.keys(bank.bankName).length > 0) {
+      setBankChecked(true);
+    }
+    console.log(Object.keys(bank.bankName).length > 0);
   }, []);
 
   const getCarDetail = (id) => {
@@ -210,7 +216,7 @@ const DetailCheckoutCard = () => {
                     </div>
                     <ButtonPayment
                       onClick={handlePaymentConfirm}
-                      // disabled={!choosePayment}
+                      isDisabled={!isBankChecked}
                     ></ButtonPayment>
                   </form>
                 </Accordion.Body>

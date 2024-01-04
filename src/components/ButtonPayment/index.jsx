@@ -1,10 +1,12 @@
 import React from "react";
 import "./style.css";
 
-const ButtonPayment = () => {
+const ButtonPayment = ({ isDisabled }) => {
   return (
     <div>
-      <button className="btn-payment">Bayar</button>
+      <button disabled={isDisabled} className="btn-payment">
+        Bayar
+      </button>
     </div>
   );
 };

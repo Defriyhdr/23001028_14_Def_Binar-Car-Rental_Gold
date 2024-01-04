@@ -16,6 +16,25 @@
     border: none;
 }
 
+.btn-payment:disabled,
+.btn-payment[disabled] {
+    color: var(--neutral-01, #FFF);
+    font-family: Arial;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 20px;
+    display: flex;
+    width: 100%;
+    height: 37px;
+    padding: 8px 12px;
+    justify-content: center;
+    align-items: center;
+    border-radius: 2px;
+    background: var(--Primary-LimeGreen-01, #DEF1DF);
+    border: none;
+}
+
 a {
     text-decoration: none;
 }
