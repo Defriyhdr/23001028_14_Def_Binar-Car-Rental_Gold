@@ -4,6 +4,8 @@ import { CopyIcon } from '@chakra-ui/icons'
 import Button from 'react-bootstrap/Button';
 import Countdown, { zeroPad } from 'react-countdown';
 import { useState } from "react";
+import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 const renderer = ({ hours, minutes, seconds }) => (
     <span className="d-inline-flex countdown gap-1 align-items-center">
@@ -21,8 +23,8 @@ const renderer = ({ hours, minutes, seconds }) => (
 function DetailConfirmPayment() {
 
     const [isConfirmPayment, setIsConfirmPayment] = useState(false)
-
     const [image, setImage] = useState({ preview: "", raw: "" });
+    const navigate = useNavigate()
 
     const handleChange = e => {
         if (e.target.files.length) {
@@ -37,10 +39,22 @@ function DetailConfirmPayment() {
         setIsConfirmPayment(true)
     }
 
-    function handleUpload() {
+    async function handleUpload() {
         console.log(image.raw.name)
 
-        //nanti di tambahin put upload bukti transfer, membutuhkan redux 
+        // var payload = {
+        //     slip: "https://test123/gambarsip.png"
+        // }
+
+        // // ! nanti di tambahin put upload bukti transfer, membutuhkan redux 
+        // try {
+        //     const response = await axios.post(`https://api-car-rental.binaracademy.org/customer/{id}/slip`, payload)
+        //     console.log(response)
+        //     navigate("/success")
+        // } catch (error) {
+        //     console.log(error)
+        // }
+
     }
 
     return (
