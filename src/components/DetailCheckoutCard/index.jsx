@@ -51,7 +51,8 @@ const DetailCheckoutCard = () => {
   };
 
   const handlePaymentConfirm = () => {
-    // navigate(`/car/${carsDetail.id}/payment3`);
+    console.log("test payy");
+    navigate(`/car/${carsDetail.id}/payment3`);
   };
 
   useEffect(() => {
@@ -59,7 +60,6 @@ const DetailCheckoutCard = () => {
     if (Object.keys(bank.bankName).length > 0) {
       setBankChecked(true);
     }
-    console.log(Object.keys(bank.bankName).length > 0);
   }, []);
 
   const getCarDetail = (id) => {
@@ -215,7 +215,7 @@ const DetailCheckoutCard = () => {
                       <p className="text-header-payment">{order.list_date.total_price}</p>
                     </div>
                     <ButtonPayment
-                      onClick={handlePaymentConfirm}
+                      onClickFunction={handlePaymentConfirm}
                       isDisabled={!isBankChecked}
                     ></ButtonPayment>
                   </form>

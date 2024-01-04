@@ -13,6 +13,7 @@ import moment from "moment";
 import { Link } from "react-router-dom";
 import { orderCar } from "../../redux/features/order/orderSlice";
 import { useDispatch, useSelector } from "react-redux";
+import ButtonSetDate from "../../components/ButtonSetDate";
 
 const CarDetail = () => {
   const param = useParams();
@@ -22,6 +23,7 @@ const CarDetail = () => {
   const [carsDetail, setcarsDetail] = useState({});
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const [isDateChoosed, setDateChoosed] = useState(false);
 
   // calendar feature
   const [durationRent, setDurationRent] = useState([null, null]);
@@ -36,7 +38,6 @@ const CarDetail = () => {
     axios
       .get(`https://api-car-rental.binaracademy.org/customer/car/${param.id}`)
       .then((res) => {
-        console.log(res.data);
         setcarsDetail(res.data);
       })
       .catch((err) => console.log(err));
@@ -49,30 +50,11 @@ const CarDetail = () => {
     if (firstDay && lastDay) {
       day = moment(lastDay).diff(moment(firstDay), "days") + 1;
       setChooseCar(day);
+      setDateChoosed(true);
     } else {
       setChooseCar(0);
     }
   }, [firstDay, lastDay]);
-
-  // const handleCustomerOrder = () => {
-
-  //   const token = localStorage.getItem("accessToken")
-  //   const config = {
-  //     headers: {
-  //       Authorization: `Bearer ${token}`
-  //     }
-  //   }
-  //   axios
-  //     .post("https://api-car-rental.binaracademy.org/customer/order", config, {
-  //       car_id: Number(carsDetail.id),
-  //       start_rent: firstDay,
-  //       end_rent: lastDay,
-  //     })
-  //     .then((res) => {
-  //       console.log(res.data);
-  //     })
-  //     .catch((err) => console.log(err));
-  // }
 
   const handleCustomerOrder = () => {
     dispatch(
@@ -85,6 +67,7 @@ const CarDetail = () => {
     setTimeout(() => {
       navigate(`/car/${carsDetail.id}/payment`);
     }, 500);
+    console.log("masuk");
   };
 
   const hiddenButton = () => {
@@ -165,20 +148,26 @@ const CarDetail = () => {
                 <div className="d-flex flex-column mt-5">
                   <h1 className="detail-car-text m-0">{carsDetail.name}</h1>
                   <div className="wrap-detail">
-                    <img className="icon-detail me-2" src={iconUserDetail} />
-                    <span className="type-detail">
-                      {(() => {
-                        if (carsDetail.category == "small") {
-                          return "2 - 4 Orang";
-                        } else if (carsDetail.category == "medium") {
-                          return "4 - 6 Orang";
-                        } else {
-                          return "6 - 8 Orang";
-                        }
-                      })()}
-                    </span>
+                    <div className="d-flex gap-2 my-2">
+                      <img className="icon-detail me-2" src={iconUserDetail} />
+                      <span className="type-detail">
+                        {(() => {
+                          if (carsDetail.category == "small") {
+                            return "2 - 4 Orang";
+                          } else if (carsDetail.category == "medium") {
+                            return "4 - 6 Orang";
+                          } else {
+                            return "6 - 8 Orang";
+                          }
+                        })()}
+                      </span>
+                    </div>
+
                     <div>
-                      <p> Tentukan lama sewa mobil (max. 7 hari)</p>
+                      <p className="content-detail-text mb-0 mt-4 mb-2">
+                        {" "}
+                        Tentukan lama sewa mobil (max. 7 hari)
+                      </p>
                       <DatePicker
                         dateFormat="dd MMM yyyy"
                         showIcon
@@ -198,18 +187,20 @@ const CarDetail = () => {
                         placeholderText="Pilih tanggal mulai dan tanggal akhir sewa"
                       />
                     </div>
-                    <div className="mt-3">
-                      {/* <Link to={`/car/${carsDetail.id}/payment`}> */}
-                      <button disabled={!chooseCar} onClick={handleCustomerOrder}>
-                        {" "}
-                        Pembayaran
-                      </button>
-                      {/* </Link> */}
-                    </div>
 
-                    <div className="d-flex justify-content-between mt-5">
+                    <div className="d-flex justify-content-between mt-3">
                       <p className="detail-car-text">Total</p>
                       <p className="detail-car-text">{`Rp ${carsDetail.price * chooseCar}`}</p>
+                    </div>
+
+                    <div className="mt-3">
+                      {/* <button onClick={handleCustomerOrder}>
+
+                      </button> */}
+                      <ButtonSetDate
+                        onClickFunction={handleCustomerOrder}
+                        isDisabled={!isDateChoosed}
+                      ></ButtonSetDate>
                     </div>
                   </div>
                   {/* calendar feature */}

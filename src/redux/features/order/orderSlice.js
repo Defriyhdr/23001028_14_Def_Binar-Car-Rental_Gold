@@ -22,9 +22,7 @@ export const orderCar = createAsyncThunk("orderCar/Cars", async (payload) => {
 });
 
 const initialState = {
-  list_date: localStorage.getItem("updatedata")
-    ? JSON.parse(localStorage.getItem("updatedata"))
-    : {},
+  list_date: localStorage.getItem("orderData") ? JSON.parse(localStorage.getItem("orderData")) : {},
 };
 
 const createOrder = createSlice({
@@ -36,7 +34,7 @@ const createOrder = createSlice({
     builder.addCase(orderCar.fulfilled, (state, action) => {
       state.loading = false;
       state.list_date = action.payload;
-      localStorage.setItem("updatedata", JSON.stringify(action.payload));
+      localStorage.setItem("orderData", JSON.stringify(action.payload));
     });
     builder.addCase(orderCar.pending, (state, action) => {
       state.loading = true;
