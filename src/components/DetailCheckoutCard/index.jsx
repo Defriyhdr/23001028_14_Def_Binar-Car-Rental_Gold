@@ -51,12 +51,11 @@ const DetailCheckoutCard = () => {
   };
 
   const handlePaymentConfirm = () => {
-    console.log("test payy");
-    navigate(`/car/${carsDetail.id}/payment-confirm`);
+    navigate(`/payment-confirm/${order.list_date.id}`);
   };
 
   useEffect(() => {
-    getCarDetail(param.id);
+    getCarDetail(order.list_date.CarId);
     if (Object.keys(bank.bankName).length > 0) {
       setBankChecked(true);
     }

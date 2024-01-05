@@ -19,9 +19,9 @@ const App = () => {
           <Route path="/" element={<LandingPage />} />
           <Route path="/car" element={<CarSearch />} />
           <Route path="/car/:id" element={<CarDetail />} />
-          <Route path="/car/:id/payment" element={<Payment />} />
-          <Route path="/car/:id/payment-confirm" element={<Payment3 />} />
-          <Route path="/car/eticket/:orderId" element={<Eticket/>} />
+          <Route path="/payment/:orderId" element={<Payment />} />
+          <Route path="/payment-confirm/:orderId" element={<Payment3 />} />
+          <Route path="/eticket/:orderId" element={<Eticket/>} />
           <Route path="/login" element={<Login/>} />
           <Route path="*" element={<NotFound />} />
           <Route path="/register" element={<Register />} />

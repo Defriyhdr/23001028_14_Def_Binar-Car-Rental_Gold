@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import iconArrowLeft from "../../assets/icon/fi_arrow-left.png";
 import "./style.css";
 import { useSelector } from "react-redux";
@@ -13,7 +13,6 @@ import {
   StepStatus,
   StepTitle,
   Stepper,
-  StepDescription,
   useSteps,
   Box,
 } from '@chakra-ui/react'
@@ -25,16 +24,29 @@ const steps = [
 ]
 
 const HeaderPayment = ({useStepIndex, orderID}) => {
-  const {order} = useSelector((state) => state)
+  const { order } = useSelector((state) => state);
+  const [backUrl, setBackUrl] = useState("")
   const { activeStep } = useSteps({
     index: useStepIndex,
     count: steps.length,
   })
+
+  useEffect(() => {
+    if (useStepIndex === 1) {
+      setBackUrl(`/payment/${order.list_date.id}`)
+    } else if (useStepIndex === 3) {
+      setBackUrl(`/payment-confirm/${order.list_date.id}`)
+    } else  {
+      setBackUrl(`/car/${order.list_date.CarId}`)
+    } 
+  }, [])
+  
+
   return (
     <div className="container header-payment px-5">
       <div className="d-flex justify-content-between">
         <div className="d-inline-flex align-items-center gap-3">
-          <Link to={`/car/${order.list_date.CarId}`}>
+          <Link to={backUrl}>
             <img className="icon-arrow-left" src={iconArrowLeft}></img>
           </Link>
           <div className="">

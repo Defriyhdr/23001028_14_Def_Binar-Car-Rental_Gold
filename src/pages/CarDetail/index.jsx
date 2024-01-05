@@ -24,6 +24,7 @@ const CarDetail = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const [isDateChoosed, setDateChoosed] = useState(false);
+  const { order } = useSelector((state) => state);
 
   // calendar feature
   const [durationRent, setDurationRent] = useState([null, null]);
@@ -65,7 +66,7 @@ const CarDetail = () => {
       })
     );
     setTimeout(() => {
-      navigate(`/car/${carsDetail.id}/payment`);
+      navigate(`/payment/${order.list_date.id}`);
     }, 500);
     console.log("masuk");
   };

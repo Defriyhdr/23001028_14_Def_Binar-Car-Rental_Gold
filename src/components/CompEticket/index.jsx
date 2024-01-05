@@ -12,6 +12,16 @@ const WORKER_URL =
 const CompEticket = () => {
   const getFilePluginInstance = getFilePlugin();
   const { DownloadButton } = getFilePluginInstance;
+
+  // validate jika order sudah di bayar menggunakan useEffect
+  // get data orderId dari url param
+  // hit get /customer/order/{id}
+  // di cek responsenya jika sliknya kosong maka direct ke not found
+
+  //atau
+
+  //validatenya ada di bagian protectedRoute
+
   return (
     <div className="px-5 confirm-payment-container">
       <div className="row">
