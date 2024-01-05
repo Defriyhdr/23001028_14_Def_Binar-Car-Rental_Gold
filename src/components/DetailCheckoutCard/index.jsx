@@ -52,7 +52,7 @@ const DetailCheckoutCard = () => {
 
   const handlePaymentConfirm = () => {
     console.log("test payy");
-    navigate(`/car/${carsDetail.id}/payment3`);
+    navigate(`/car/${carsDetail.id}/payment-confirm`);
   };
 
   useEffect(() => {

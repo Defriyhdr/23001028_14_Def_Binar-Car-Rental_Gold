@@ -1,6 +1,8 @@
 import React from "react";
 import iconArrowLeft from "../../assets/icon/fi_arrow-left.png";
 import "./style.css";
+import { useSelector } from "react-redux";
+import { Link } from "react-router-dom"
 
 import {
   Step,
@@ -17,22 +19,30 @@ import {
 } from '@chakra-ui/react'
 
 const steps = [
-  { title: 'First', description: 'Contact Info' },
-  { title: 'Second', description: 'Date & Time' },
-  { title: 'Third', description: 'Select Rooms' },
+  { title: 'Pilih Metode' },
+  { title: 'Bayar'},
+  { title: 'Tiket'},
 ]
 
-const HeaderPayment = () => {
+const HeaderPayment = ({useStepIndex, orderID}) => {
+  const {order} = useSelector((state) => state)
   const { activeStep } = useSteps({
-    index: 1,
+    index: useStepIndex,
     count: steps.length,
   })
   return (
     <div className="container header-payment px-5">
       <div className="d-flex justify-content-between">
         <div className="d-inline-flex align-items-center gap-3">
-          <img className="icon-arrow-left" src={iconArrowLeft}></img>
-          <h1 className="m-auto text-header-payment">Pembayaran</h1> 
+          <Link to={`/car/${order.list_date.CarId}`}>
+            <img className="icon-arrow-left" src={iconArrowLeft}></img>
+          </Link>
+          <div className="">
+            <h1 className="m-auto text-header-payment">Pembayaran</h1>
+            {
+              orderID && <p className="m-0">Order ID : {orderID}</p>
+            }
+          </div>
         </div>
         <div className="stepper col-5">
           <Stepper index={activeStep}>

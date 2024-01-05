@@ -6,6 +6,7 @@ import Countdown, { zeroPad } from 'react-countdown';
 import { useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import { useSelector } from "react-redux";
 
 const renderer = ({ hours, minutes, seconds }) => (
     <span className="d-inline-flex countdown gap-1 align-items-center">
@@ -19,11 +20,16 @@ const renderer = ({ hours, minutes, seconds }) => (
     </span>
   );
 
+  const initImage = {
+    preview: "",
+    raw: ""
+  }
 
 function DetailConfirmPayment() {
 
     const [isConfirmPayment, setIsConfirmPayment] = useState(false)
-    const [image, setImage] = useState({ preview: "", raw: "" });
+    const [image, setImage] = useState(initImage);
+    const {order, bank} = useSelector((state) => state)
     const navigate = useNavigate()
 
     const handleChange = e => {
@@ -40,17 +46,27 @@ function DetailConfirmPayment() {
     }
 
     async function handleUpload() {
-        console.log(image.raw.name)
+        console.log("masuk")
 
-        // var payload = {
-        //     slip: "https://test123/gambarsip.png"
-        // }
+        let formData = new FormData();
+        formData.append("slip", image.raw);
 
-        // // ! nanti di tambahin put upload bukti transfer, membutuhkan redux 
+        const config = {
+            headers: {
+                access_token: localStorage.getItem("accesToken"),
+                "Content-Type": "application/json",
+            },
+        }
+
+        formData.forEach((value,key) => {
+            console.log(key+" "+value)
+          });
+
+        // ! nanti di tambahin put upload bukti transfer, membutuhkan redux 
         // try {
-        //     const response = await axios.post(`https://api-car-rental.binaracademy.org/customer/{id}/slip`, payload)
+        //     const response = await axios.post(`https://api-car-rental.binaracademy.org/customer/order/${order.list_date.id}/slip`, formData, config)
         //     console.log(response)
-        //     navigate("/success")
+        //     navigate(`/car/eticket/${order.list_date.id}`)
         // } catch (error) {
         //     console.log(error)
         // }
@@ -79,10 +95,10 @@ function DetailConfirmPayment() {
                         <h1>Lakukan Transfer Ke</h1>
                         <div className="row">
                             <div className="col-2" id="bank-name">
-                                <p>BCA</p>
+                                <p>{bank.bankName}</p>
                             </div>
                             <div className="col">
-                                <p className="mb-0">BCA Transfer</p>
+                                <p className="mb-0">{bank.bankName} Transfer</p>
                                 <p>a.n Binar Car Rental</p>
                             </div>
                         </div>
@@ -94,7 +110,10 @@ function DetailConfirmPayment() {
                         <br />
                         <p>Total Bayar</p>
                         <div className="account-number d-flex justify-content-between">
-                            <p>Rp 4.200.000</p>
+                            <p>Rp {new Intl.NumberFormat("id-ID", {
+                                style: "decimal",
+                                currency: "IDR",
+                                }).format(order.list_date.total_price)}</p>
                             <CopyIcon  w={5} h={5} />
                         </div>
                         <br />
@@ -104,9 +123,9 @@ function DetailConfirmPayment() {
                         <div className="tab-instruction">
                             <Tabs>
                                 <TabList>
-                                    <Tab>ATM BCA</Tab>
-                                    <Tab>M-BCA</Tab>
-                                    <Tab>BCA Klik</Tab>
+                                    <Tab>ATM {bank.bankName}</Tab>
+                                    <Tab>M-{bank.bankName}</Tab>
+                                    <Tab>{bank.bankName} Klik</Tab>
                                     <Tab>Internet Banking</Tab>
                                 </TabList>
                                 <TabPanels>
@@ -182,7 +201,7 @@ function DetailConfirmPayment() {
                                         onChange={handleChange}
                                     />
                                 </div>
-                                <Button className="mb-3 mt-3" variant="success" onClick={handleUpload}><b>Upload</b></Button>  
+                                <Button className="mb-3 mt-3" variant="success" onClick={handleUpload} disabled={image !== initImage? false : true}><b>Upload</b></Button>  
                             </div>
                         ) : (
                             <div className="card shadow-card mt-4 px-4 py-3">
