@@ -24,7 +24,6 @@ const CarDetail = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const [isDateChoosed, setDateChoosed] = useState(false);
-  const { order } = useSelector((state) => state);
 
   // calendar feature
   const [durationRent, setDurationRent] = useState([null, null]);

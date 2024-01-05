@@ -8,7 +8,7 @@ import { useSelector } from "react-redux";
 // import "./style.css";
 
 const Payment3 = () => {
-  const {order} = useSelector((state) => state)
+  const order = useSelector((state) => state.order)
 
   return (
     <div>

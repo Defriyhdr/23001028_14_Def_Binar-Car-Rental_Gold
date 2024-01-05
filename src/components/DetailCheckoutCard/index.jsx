@@ -43,7 +43,8 @@ const DetailCheckoutCard = () => {
   const param = useParams();
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const { order, bank } = useSelector((state) => state);
+  const order = useSelector((state) => state.order);
+  const bank = useSelector((state) => state.bank);
 
   const handleChooseBank = (id) => {
     dispatch(updateBankName(id));

@@ -75,8 +75,8 @@ const Footer = () => {
                 <span className="footer-text">Connect with us</span>
               </div>
               <div className="col-12 gap-2">
-                {list.map((item) => (
-                  <div key={item} className="wrap-icon">
+                {list.map((item, i) => (
+                  <div key={i} className="wrap-icon">
                     <img src={item.icon} />
                   </div>
                 ))}

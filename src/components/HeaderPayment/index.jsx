@@ -24,7 +24,7 @@ const steps = [
 ]
 
 const HeaderPayment = ({useStepIndex, orderID}) => {
-  const { order } = useSelector((state) => state);
+  const order = useSelector((state) => state.order);
   const [backUrl, setBackUrl] = useState("")
   const { activeStep } = useSteps({
     index: useStepIndex,

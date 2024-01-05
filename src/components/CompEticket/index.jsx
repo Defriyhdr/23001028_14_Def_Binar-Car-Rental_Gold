@@ -38,9 +38,9 @@ const CompEticket = () => {
                 <path
                   d="M28.3333 8.5L12.75 24.0833L5.66663 17"
                   stroke="white"
-                  stroke-width="4"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
+                  strokeWidth="4"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
                 />
               </svg>
             </div>
@@ -51,14 +51,13 @@ const CompEticket = () => {
           </p>
           <div className="card shadow-card mt-4 px-4 py-3" id="box-pdf">
             <h1 className="invoice">Invoice</h1>
-            <button
-              type="button"
-              class="btn btn-outline-primary"
+            <div
+              className="btn btn-outline-primary"
               id="button-dowloadpdf"
             >
               <DownloadButton />
               <p className="unduh">Unduh</p>
-            </button>
+            </div>
             <Worker workerUrl={WORKER_URL}>
               <div className="row">
                 <div className="col">

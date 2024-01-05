@@ -29,7 +29,8 @@ function DetailConfirmPayment() {
 
     const [isConfirmPayment, setIsConfirmPayment] = useState(false)
     const [image, setImage] = useState(initImage);
-    const {order, bank} = useSelector((state) => state)
+    const order = useSelector((state) => state.order)
+    const bank = useSelector((state) => state.bank)
     const navigate = useNavigate()
 
     const handleChange = e => {
@@ -58,7 +59,6 @@ function DetailConfirmPayment() {
 
         try {
             const response = await axios.put(`https://api-car-rental.binaracademy.org/customer/order/${order.list_date.id}/slip`, formData, config)
-            console.log(response)
             navigate(`/eticket/${order.list_date.id}`)
         } catch (error) {
             console.log(error)
@@ -178,7 +178,7 @@ function DetailConfirmPayment() {
                                         ) : (
                                         <>
                                                 <span className="fa-stack fa-2x">
-                                                    <i class="fa-regular fa-image fa-stack-1x"></i>
+                                                    <i className="fa-regular fa-image fa-stack-1x"></i>
                                                 </span>
                                         </>
                                         )}
