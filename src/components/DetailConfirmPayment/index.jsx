@@ -46,30 +46,23 @@ function DetailConfirmPayment() {
     }
 
     async function handleUpload() {
-        console.log("masuk")
-
         let formData = new FormData();
         formData.append("slip", image.raw);
 
         const config = {
             headers: {
                 access_token: localStorage.getItem("accesToken"),
-                "Content-Type": "application/json",
+                "Content-Type": "multipart/form-data",
             },
         }
 
-        formData.forEach((value,key) => {
-            console.log(key+" "+value)
-          });
-
-        // ! nanti di tambahin put upload bukti transfer, membutuhkan redux 
-        // try {
-        //     const response = await axios.post(`https://api-car-rental.binaracademy.org/customer/order/${order.list_date.id}/slip`, formData, config)
-        //     console.log(response)
-        //     navigate(`/car/eticket/${order.list_date.id}`)
-        // } catch (error) {
-        //     console.log(error)
-        // }
+        try {
+            const response = await axios.put(`https://api-car-rental.binaracademy.org/customer/order/${order.list_date.id}/slip`, formData, config)
+            console.log(response)
+            navigate(`/eticket/${order.list_date.id}`)
+        } catch (error) {
+            console.log(error)
+        }
 
     }
 
@@ -184,11 +177,7 @@ function DetailConfirmPayment() {
                                         <img src={image.preview} alt="dummy" width="300" height="300" />
                                         ) : (
                                         <>
-                                            
-
                                                 <span className="fa-stack fa-2x">
-                                                    {/* <i className="fas fa-circle fa-stack-2x" />
-                                                    <i className="fas fa-store fa-stack-1x fa-inverse" /> */}
                                                     <i class="fa-regular fa-image fa-stack-1x"></i>
                                                 </span>
                                         </>
