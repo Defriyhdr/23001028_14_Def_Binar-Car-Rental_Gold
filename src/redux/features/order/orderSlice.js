@@ -2,23 +2,7 @@ import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 
 export const orderCar = createAsyncThunk("orderCar/Cars", async (payload) => {
-  try {
-    const config = {
-      headers: {
-        access_token: localStorage.getItem("accesToken"),
-      },
-    };
-
-    const NewOrderCar = await axios.post(
-      `https://api-car-rental.binaracademy.org/customer/order/`,
-      payload,
-      config
-    );
-    console.log(NewOrderCar.data);
-    return NewOrderCar.data;
-  } catch (error) {
-    throw error;
-  }
+  return payload;
 });
 
 const initialState = {

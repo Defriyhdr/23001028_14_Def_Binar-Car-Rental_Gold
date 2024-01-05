@@ -57,22 +57,31 @@ const CarDetail = () => {
     }
   }, [firstDay, lastDay]);
 
-  const handleCustomerOrder = () => {
-    dispatch(
-      orderCar({
+  const handleCustomerOrder = async () => {
+    try {
+      const payload = {
         start_rent_at: moment(durationRent[0]).format("YYYY-MM-DD"),
         finish_rent_at: moment(durationRent[1]).format("YYYY-MM-DD"),
         car_id: Number(carById.id),
-      })
-    );
-    setTimeout(() => {
-      navigate(`/payment/${order.list_date.id}`);
-    }, 500);
-    console.log("masuk");
-  };
-
-  const hiddenButton = () => {
-    chooseCar(!setChooseCar);
+      }
+      const config = {
+        headers: {
+          access_token: localStorage.getItem("accesToken"),
+        },
+      };
+      const orderCarResponse = await axios.post(
+        `https://api-car-rental.binaracademy.org/customer/order/`,
+        payload,
+        config
+      );
+      console.log(orderCarResponse.data);
+      dispatch(
+        orderCar(orderCarResponse.data)
+      );
+      navigate(`/payment/${orderCarResponse.data.id}`);
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   return (
