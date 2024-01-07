@@ -1,5 +1,5 @@
 import React from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { useState } from "react";
 import "./style.css";
 import * as requestAPI from "../FormLogin/helpers/Api";
@@ -10,7 +10,8 @@ const FormLogin = () => {
   const [passwordUser, setPasswordUser] = useState("");
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
-
+const location = useLocation()
+console.log("location",location)
   const onChangeEmail = (e) => {
     setEmailUser(e.target.value);
   };
@@ -36,7 +37,7 @@ const FormLogin = () => {
         timer: 1500,
       });
       setTimeout(() => {
-        navigate("/");
+        navigate(location?.state?.prevUrl || "/");
         setLoading(false);
       }, 2000);
     } catch (err) {

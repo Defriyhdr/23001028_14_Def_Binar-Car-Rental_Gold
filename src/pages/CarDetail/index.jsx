@@ -1,5 +1,5 @@
 import React from "react";
-import { useNavigate, useParams } from "react-router-dom";
+import { Navigate, useNavigate, useParams } from "react-router-dom";
 import axios from "axios";
 import { useState, useEffect } from "react";
 import Navbar from "../../components/Navbar";
@@ -14,6 +14,7 @@ import { Link } from "react-router-dom";
 import { orderCar } from "../../redux/features/order/orderSlice";
 import { useDispatch, useSelector } from "react-redux";
 import ButtonSetDate from "../../components/ButtonSetDate";
+import { validationOrder } from "../../validation/validation";
 
 const CarDetail = () => {
   const param = useParams();
@@ -57,6 +58,7 @@ const CarDetail = () => {
   }, [firstDay, lastDay]);
 
   const handleCustomerOrder = async () => {
+
     try {
       const payload = {
         start_rent_at: moment(durationRent[0]).format("YYYY-MM-DD"),
@@ -72,7 +74,7 @@ const CarDetail = () => {
         `https://api-car-rental.binaracademy.org/customer/order/`,
         payload,
         config
-      );
+      );  
       console.log(orderCarResponse.data);
       dispatch(
         orderCar(orderCarResponse.data)
@@ -80,8 +82,12 @@ const CarDetail = () => {
       navigate(`/payment/${orderCarResponse.data.id}`);
     } catch (error) {
       console.log(error);
+       navigate('/login')
     }
+
+  
   };
+
 
   return (
     <div>
