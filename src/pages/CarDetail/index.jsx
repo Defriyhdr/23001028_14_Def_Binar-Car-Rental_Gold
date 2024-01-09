@@ -10,11 +10,9 @@ import "../CarDetail/style.css";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import moment from "moment";
-import { Link } from "react-router-dom";
 import { orderCar } from "../../redux/features/order/orderSlice";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch} from "react-redux";
 import ButtonSetDate from "../../components/ButtonSetDate";
-import { validationOrder } from "../../validation/validation";
 
 const CarDetail = () => {
   const param = useParams();
@@ -25,8 +23,6 @@ const CarDetail = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const [isDateChoosed, setDateChoosed] = useState(false);
-
-  // calendar feature
   const [durationRent, setDurationRent] = useState([null, null]);
   const [firstDay, lastDay] = durationRent;
   const [chooseCar, setChooseCar] = useState("");
@@ -44,7 +40,6 @@ const CarDetail = () => {
       .catch((err) => console.log(err));
   };
 
-  // calendar feature
   useEffect(() => {
     let day = 0;
 
@@ -58,36 +53,35 @@ const CarDetail = () => {
   }, [firstDay, lastDay]);
 
   const handleCustomerOrder = async () => {
-
-    try {
-      const payload = {
-        start_rent_at: moment(durationRent[0]).format("YYYY-MM-DD"),
-        finish_rent_at: moment(durationRent[1]).format("YYYY-MM-DD"),
-        car_id: Number(carById.id),
+    const payload = {
+      start_rent_at: moment(durationRent[0]).format("YYYY-MM-DD"),
+      finish_rent_at: moment(durationRent[1]).format("YYYY-MM-DD"),
+      car_id: Number(carById.id),
+    };
+    console.log(payload);
+    const token = localStorage.getItem("accesToken");
+    if (token) {
+      try {
+        const config = {
+          headers: {
+            access_token: localStorage.getItem("accesToken"),
+          },
+        };
+        const orderCarResponse = await axios.post(
+          `https://api-car-rental.binaracademy.org/customer/order/`,
+          payload,
+          config
+        );
+        dispatch(orderCar(orderCarResponse.data));
+        navigate(`/payment/${orderCarResponse.data.id}`);
+      } catch (error) {
+        console.log(error);
       }
-      const config = {
-        headers: {
-          access_token: localStorage.getItem("accesToken"),
-        },
-      };
-      const orderCarResponse = await axios.post(
-        `https://api-car-rental.binaracademy.org/customer/order/`,
-        payload,
-        config
-      );  
-      console.log(orderCarResponse.data);
-      dispatch(
-        orderCar(orderCarResponse.data)
-      );
-      navigate(`/payment/${orderCarResponse.data.id}`);
-    } catch (error) {
-      console.log(error);
-       navigate('/login')
+    } else {
+      localStorage.setItem("payload", JSON.stringify(payload));
+      navigate("/login");
     }
-
-  
   };
-
 
   return (
     <div>
@@ -104,9 +98,15 @@ const CarDetail = () => {
                     <li className="content-detail-text">
                       Apa saja yang termasuk dalam paket misal durasi max 12 jam
                     </li>
-                    <li className="content-detail-text">Sudah termasuk bensin selama 12 jam</li>
-                    <li className="content-detail-text">Sudah termasuk Tiket Wisata</li>
-                    <li className="content-detail-text">Sudah termasuk pajak</li>
+                    <li className="content-detail-text">
+                      Sudah termasuk bensin selama 12 jam
+                    </li>
+                    <li className="content-detail-text">
+                      Sudah termasuk Tiket Wisata
+                    </li>
+                    <li className="content-detail-text">
+                      Sudah termasuk pajak
+                    </li>
                   </ul>
                 </div>
                 <div className="mt-4">
@@ -116,14 +116,19 @@ const CarDetail = () => {
                       Tidak termasuk biaya makan sopir Rp 75.000/hari
                     </li>
                     <li className="content-detail-text ">
-                      Jika overtime lebih dari 12 jam akan ada tambahan biaya Rp 20.000/jam
+                      Jika overtime lebih dari 12 jam akan ada tambahan biaya Rp
+                      20.000/jam
                     </li>
-                    <li className="content-detail-text ">Tidak termasuk akomodasi penginapan</li>
+                    <li className="content-detail-text ">
+                      Tidak termasuk akomodasi penginapan
+                    </li>
                   </ul>
                 </div>
                 <div className="mt-4">
                   <div className="d-flex justify-content-between">
-                    <h2 className="sub-detail-text mb-0">Refund, Reschedule, Overtime</h2>
+                    <h2 className="sub-detail-text mb-0">
+                      Refund, Reschedule, Overtime
+                    </h2>
                     <img onClick={dropDown} src={iconDropdown} />
                   </div>
                   {list && (
@@ -132,23 +137,32 @@ const CarDetail = () => {
                         Tidak termasuk biaya makan sopir Rp 75.000/hari
                       </li>
                       <li className="content-detail-text">
-                        Jika overtime lebih dari 12 jam akan ada tambahan biaya Rp 20.000/jam
+                        Jika overtime lebih dari 12 jam akan ada tambahan biaya
+                        Rp 20.000/jam
                       </li>
-                      <li className="content-detail-text">Tidak termasuk akomodasi penginapan</li>
+                      <li className="content-detail-text">
+                        Tidak termasuk akomodasi penginapan
+                      </li>
                       <li className="content-detail-text">
                         Tidak termasuk biaya makan sopir Rp 75.000/hari
                       </li>
                       <li className="content-detail-text">
-                        Jika overtime lebih dari 12 jam akan ada tambahan biaya Rp 20.000/jam
+                        Jika overtime lebih dari 12 jam akan ada tambahan biaya
+                        Rp 20.000/jam
                       </li>
-                      <li className="content-detail-text">Tidak termasuk akomodasi penginapan</li>
+                      <li className="content-detail-text">
+                        Tidak termasuk akomodasi penginapan
+                      </li>
                       <li className="content-detail-text">
                         Tidak termasuk biaya makan sopir Rp 75.000/hari
                       </li>
                       <li className="content-detail-text">
-                        Jika overtime lebih dari 12 jam akan ada tambahan biaya Rp 20.000/jam
+                        Jika overtime lebih dari 12 jam akan ada tambahan biaya
+                        Rp 20.000/jam
                       </li>
-                      <li className="content-detail-text">Tidak termasuk akomodasi penginapan</li>
+                      <li className="content-detail-text">
+                        Tidak termasuk akomodasi penginapan
+                      </li>
                     </ul>
                   )}
                 </div>
@@ -195,30 +209,31 @@ const CarDetail = () => {
                         minDate={firstDay ? new Date(lastDay) : new Date()}
                         maxDate={
                           firstDay
-                            ? new Date(new Date(firstDay).setDate(new Date(firstDay).getDate() + 6))
+                            ? new Date(
+                                new Date(firstDay).setDate(
+                                  new Date(firstDay).getDate() + 6
+                                )
+                              )
                             : null
                         }
-                        // isClearable
                         placeholderText="Pilih tanggal mulai dan tanggal akhir sewa"
                       />
                     </div>
 
                     <div className="d-flex justify-content-between mt-3">
                       <p className="detail-car-text">Total</p>
-                      <p className="detail-car-text">{`Rp ${carsDetail.price * chooseCar}`}</p>
+                      <p className="detail-car-text">{`Rp ${
+                        carsDetail.price * chooseCar
+                      }`}</p>
                     </div>
 
                     <div className="mt-3">
-                      {/* <button onClick={handleCustomerOrder}>
-
-                      </button> */}
                       <ButtonSetDate
                         onClickFunction={handleCustomerOrder}
                         isDisabled={!isDateChoosed}
                       ></ButtonSetDate>
                     </div>
                   </div>
-                  {/* calendar feature */}
                 </div>
               </div>
             </div>
