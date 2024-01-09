@@ -61,7 +61,7 @@ const CarSearch = () => {
 
   const handleStatus = (e) => {
     setStatus(e.target.value);
-    console.log(e.target.value);
+
   };
 
   const handleSubmit = () => {
@@ -97,12 +97,12 @@ const CarSearch = () => {
       <Navbar />
       <Hero />
       <div className="container">
-        {/* form */}
+
         <div onClick={handleOn} className="container card p-0 card-search">
           <div className="card-body">
             <div className="d-inline-flex flex-wrap gap-2">
               <div className="input-car-name">
-                {/* search car */}
+
                 <label htmlFor="name" className="form-label text-label mb-1">
                   Nama Mobil
                 </label>
@@ -114,9 +114,7 @@ const CarSearch = () => {
                   placeholder="Ketik Nama/tipe mobil"
                 />
               </div>
-              {/* search car */}
 
-              {/* type */}
               <div className="select-car-category">
                 <label className="form-label text-label mb-1">Kategori</label>
                 <select value={type} onChange={handleType} className="form-select text-select">
@@ -126,9 +124,7 @@ const CarSearch = () => {
                   <option value={"large"}>6 - 8 orang</option>
                 </select>
               </div>
-              {/* type */}
 
-              {/* price */}
               <div className="select-car-category">
                 <label className="form-label text-label mb-1">Harga</label>
                 <select
@@ -142,9 +138,7 @@ const CarSearch = () => {
                   <option value={"400000-600000"}>Rp.400.000 - Rp.600.000</option>
                 </select>
               </div>
-              {/* price */}
 
-              {/* status */}
               <div className="select-car-category">
                 <label className="form-label text-label mb-1">Status</label>
                 <select
@@ -157,7 +151,7 @@ const CarSearch = () => {
                   <option value={true}>Tidak Disewakan</option>
                 </select>
               </div>
-              {/* status */}
+
 
               <div className="wrap-btn">
                 <button
@@ -177,10 +171,9 @@ const CarSearch = () => {
             </div>
           </div>
         </div>
-        {/* form */}
+
       </div>
 
-      {/* list car */}
       <div className="wrap-list-car">
         {!carsAll.length ? (
           <div className="wrap-not-found">
@@ -210,7 +203,6 @@ const CarSearch = () => {
           ))
         )}
       </div>
-      {/* list car */}
       <Footer />
     </div>
   );

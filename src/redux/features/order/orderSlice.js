@@ -1,12 +1,13 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-import axios from "axios";
 
 export const orderCar = createAsyncThunk("orderCar/Cars", async (payload) => {
   return payload;
 });
 
 const initialState = {
-  list_date: localStorage.getItem("orderData") ? JSON.parse(localStorage.getItem("orderData")) : {},
+  list_date: localStorage.getItem("orderData")
+    ? JSON.parse(localStorage.getItem("orderData"))
+    : {},
 };
 
 const createOrder = createSlice({
