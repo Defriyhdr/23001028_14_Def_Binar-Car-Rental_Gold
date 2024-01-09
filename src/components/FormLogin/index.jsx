@@ -1,16 +1,18 @@
-import React from "react";
-import { Link, useNavigate } from "react-router-dom";
+
+import { Link, useNavigate} from "react-router-dom";
 import { useState } from "react";
 import "./style.css";
 import * as requestAPI from "../FormLogin/helpers/Api";
 import Form from "react-bootstrap/Form";
-
+import axios from "axios";
+import { useDispatch } from "react-redux";
+import { orderCar } from "../../redux/features/order/orderSlice";
 const FormLogin = () => {
   const [emailUser, setEmailUser] = useState("");
   const [passwordUser, setPasswordUser] = useState("");
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
-
+  const dispatch = useDispatch();
   const onChangeEmail = (e) => {
     setEmailUser(e.target.value);
   };
@@ -20,6 +22,7 @@ const FormLogin = () => {
   };
 
   const handleLogin = async () => {
+    const payload = localStorage.getItem("payload");
     try {
       const bodyPayLoad = {
         email: emailUser,
@@ -35,10 +38,13 @@ const FormLogin = () => {
         showConfirmButton: false,
         timer: 1500,
       });
-      setTimeout(() => {
-        navigate("/");
-        setLoading(false);
-      }, 2000);
+      if (payload) {
+        handleNextPage();
+      } else {
+        setTimeout(() => {
+          navigate("/");
+        }, 2000);
+      }
     } catch (err) {
       console.log(err);
       if (emailUser === "" || passwordUser === "") {
@@ -59,6 +65,29 @@ const FormLogin = () => {
       }
     }
   };
+
+  const handleNextPage = async () => {
+    let payload = localStorage.getItem("payload");
+    payload = JSON.parse(payload);
+    try {
+      const config = {
+        headers: {
+          access_token: localStorage.getItem("accesToken"),
+        },
+      };
+
+      const orderCarResponse = await axios.post(
+        `https://api-car-rental.binaracademy.org/customer/order/`,
+        payload,
+        config
+      );
+      dispatch(orderCar(orderCarResponse.data));
+      navigate(`/payment/${orderCarResponse.data.id}`);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   return (
     <div className="container-form-login">
       <div className="head-formlogin d-grid gap-3">

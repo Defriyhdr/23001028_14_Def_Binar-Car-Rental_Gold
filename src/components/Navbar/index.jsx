@@ -12,6 +12,7 @@ const Navbar = () => {
 
   const handleLogOut = () => {
     localStorage.removeItem("accesToken");
+    localStorage.clear();
     navigate("/");
   };
 
@@ -19,11 +20,11 @@ const Navbar = () => {
     <>
       <nav className="navbar navbar-expand-lg bg-blue-light fixed-top">
         <div className="container">
-          <a className="navbar-brand" href="#hero">
+          <div className="navbar-brand">
             <Link to={"/"}>
               <img src={imgLogo} />
             </Link>
-          </a>
+          </div>
           <button
             className="navbar-toggler border-0 "
             type="button"
