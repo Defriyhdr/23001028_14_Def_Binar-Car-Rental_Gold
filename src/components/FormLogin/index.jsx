@@ -68,9 +68,9 @@ const FormLogin = () => {
         <div className="header-login">Welcome Back!</div>
         <Form className="d-grid gap-3">
           <Form.Group className="mb-3" controlId="">
-            <Form.Label>Name*</Form.Label>
+            <Form.Label>Email*</Form.Label>
             <Form.Control
-              type="name"
+              type="email"
               name="name"
               placeholder="Nama Lengkap"
               onChange={onChangeEmail}
