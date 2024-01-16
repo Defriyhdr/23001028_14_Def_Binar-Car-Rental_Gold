@@ -58,7 +58,6 @@ const CarDetail = () => {
       finish_rent_at: moment(durationRent[1]).format("YYYY-MM-DD"),
       car_id: Number(carById.id),
     };
-    console.log(payload);
     const token = localStorage.getItem("accesToken");
     if (token) {
       try {
@@ -78,10 +77,16 @@ const CarDetail = () => {
         console.log(error);
       }
     } else {
-      localStorage.setItem("payload", JSON.stringify(payload));
+      localStorage.setItem("carId", JSON.stringify(payload.car_id));
       navigate("/login");
     }
   };
+
+  function minDate(){
+    var date = new Date();
+    var tomorrow = new Date(date.getFullYear(), date.getMonth(), (date.getDate() + 1));
+    return tomorrow
+  }
 
   return (
     <div>
@@ -206,7 +211,7 @@ const CarDetail = () => {
                         onChange={(update) => {
                           setDurationRent(update);
                         }}
-                        minDate={firstDay ? new Date(lastDay) : new Date()}
+                        minDate={minDate()}
                         maxDate={
                           firstDay
                             ? new Date(

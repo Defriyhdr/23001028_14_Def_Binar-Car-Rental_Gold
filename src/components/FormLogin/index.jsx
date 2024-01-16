@@ -22,7 +22,7 @@ const FormLogin = () => {
   };
 
   const handleLogin = async () => {
-    const payload = localStorage.getItem("payload");
+    const carId = localStorage.getItem("carId");
     try {
       const bodyPayLoad = {
         email: emailUser,
@@ -38,7 +38,7 @@ const FormLogin = () => {
         showConfirmButton: false,
         timer: 1500,
       });
-      if (payload) {
+      if (carId) {
         handleNextPage();
       } else {
         setTimeout(() => {
@@ -67,25 +67,13 @@ const FormLogin = () => {
   };
 
   const handleNextPage = async () => {
-    let payload = localStorage.getItem("payload");
-    payload = JSON.parse(payload);
-    try {
-      const config = {
-        headers: {
-          access_token: localStorage.getItem("accesToken"),
-        },
-      };
+    let carId = localStorage.getItem("carId");
+   carId = JSON.parse(carId);
+    setTimeout(() => {
+      navigate(`/car/${carId}`);
+      localStorage.removeItem("carId")
+    }, 2000);
 
-      const orderCarResponse = await axios.post(
-        `https://api-car-rental.binaracademy.org/customer/order/`,
-        payload,
-        config
-      );
-      dispatch(orderCar(orderCarResponse.data));
-      navigate(`/payment/${orderCarResponse.data.id}`);
-    } catch (error) {
-      console.log(error);
-    }
   };
 
   return (

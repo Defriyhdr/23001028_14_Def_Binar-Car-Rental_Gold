@@ -134,10 +134,13 @@ function DetailConfirmPayment() {
                                         </ul>
                                     </TabPanel>
                                     <TabPanel>
-                                        <p>two!</p>
+                                        <p>M-{bank.bankName}</p>
                                     </TabPanel>
                                     <TabPanel>
-                                        <p>three!</p>
+                                        <p>{bank.bankName}</p>
+                                    </TabPanel>
+                                    <TabPanel>
+                                        <p>Internet Bangking</p>
                                     </TabPanel>
                                 </TabPanels>
                             </Tabs>
