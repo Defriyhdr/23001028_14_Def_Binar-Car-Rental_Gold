@@ -31,22 +31,52 @@ function DetailConfirmPayment() {
     const [image, setImage] = useState(initImage);
     const order = useSelector((state) => state.order)
     const bank = useSelector((state) => state.bank)
+    const [alertImage, setAlertImage] = useState(null)
     const navigate = useNavigate()
 
     const handleChange = e => {
         if (e.target.files.length) {
-        setImage({
-            preview: URL.createObjectURL(e.target.files[0]),
-            raw: e.target.files[0]
-        });
+            const result = validateImage(e.target.files[0])
+            if (result !== "success") {
+                setAlertImage(result)
+                e.target.value = null
+                setImage(initImage)
+                setTimeout(() => {
+                    setAlertImage(null)
+                }, 3000);
+                return
+            }
+            setImage({
+                preview: URL.createObjectURL(e.target.files[0]),
+                raw: e.target.files[0]
+            });
         }
     };
+
+    const validateImage = (rawImage) => {
+        if (rawImage.size > 1024 * 1024) {
+            return "file is too large"
+          }
+      
+          const typeImage = ["image/jpeg", "image/png", "image/jpg"];
+          if(!typeImage.includes(rawImage.type)){
+            return "file is not an image"
+          }
+          return "success"
+    }
 
     function handleConfirmPayment() {
         setIsConfirmPayment(true)
     }
 
     async function handleUpload() {
+        if (!image.raw) {
+            setAlertImage("image is required")
+            setTimeout(() => {
+                setAlertImage(null)
+            }, 3000);
+            return
+        }
         let formData = new FormData();
         formData.append("slip", image.raw);
 
@@ -192,6 +222,9 @@ function DetailConfirmPayment() {
                                         style={{ display: "none" }}
                                         onChange={handleChange}
                                     />
+                                    {
+                                        alertImage && <p className="text-danger">{alertImage}</p>
+                                    }
                                 </div>
                                 <Button className="mb-3 mt-3" variant="success" onClick={handleUpload} disabled={image !== initImage? false : true}><b>Upload</b></Button>  
                             </div>
