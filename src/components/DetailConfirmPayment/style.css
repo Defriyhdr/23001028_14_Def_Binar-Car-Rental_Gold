@@ -1,9 +1,10 @@
-.confirm-payment-container{
+.confirm-payment-container {
     display: grid;
     margin-top: -250px;
 }
 
-.confirm-payment-container p, h1{
+.confirm-payment-container p,
+h1 {
     font-size: 13px;
 }
 
@@ -15,7 +16,7 @@
     padding-top: 12px;
 }
 
-.count-down{
+.count-down {
     text-align: right;
     padding-top: 23px;
 }
@@ -47,7 +48,7 @@
     margin-left: 1px;
 }
 
-.account-number p{
+.account-number p {
     margin-bottom: 0 !important;
 }
 
@@ -62,13 +63,11 @@
     padding: 2px;
 }
 
-.title-upload-payment p{
+.title-upload-payment p {
     font-size: 15px !important;
 }
 
-.upload-image{
+.upload-image {
     background-color: #EEE;
-    height: 200px;
+    min-height: 200px;
 }
-
-

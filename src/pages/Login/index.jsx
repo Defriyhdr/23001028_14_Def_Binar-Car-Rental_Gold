@@ -9,7 +9,7 @@ const Login = () => {
         <FormLogin />
       </div>
       <div className="container-right-login">
-        <h1>Binar Car Rental</h1>
+        <h1 className="title-login-register">Binar Car Rental</h1>
         <img className="image-formlogin" src={LandingPageImage} alt="" />
       </div>
     </div>

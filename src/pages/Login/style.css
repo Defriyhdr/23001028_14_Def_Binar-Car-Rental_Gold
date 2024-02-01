@@ -55,3 +55,9 @@ body {
     text-align: center;
   }
 }
+
+.title-login-register {
+  font-family: Rubik;
+  font-size: 48px;
+  font-weight: 500;
+}

@@ -1,5 +1,4 @@
-
-import { Link, useNavigate} from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useState } from "react";
 import "./style.css";
 import * as requestAPI from "../FormLogin/helpers/Api";
@@ -68,12 +67,11 @@ const FormLogin = () => {
 
   const handleNextPage = async () => {
     let carId = localStorage.getItem("carId");
-   carId = JSON.parse(carId);
+    carId = JSON.parse(carId);
     setTimeout(() => {
       navigate(`/car/${carId}`);
-      localStorage.removeItem("carId")
+      localStorage.removeItem("carId");
     }, 2000);
-
   };
 
   return (
@@ -86,12 +84,7 @@ const FormLogin = () => {
         <Form className="d-grid gap-3">
           <Form.Group className="mb-3" controlId="">
             <Form.Label>Email*</Form.Label>
-            <Form.Control
-              type="email"
-              name="name"
-              placeholder="Nama Lengkap"
-              onChange={onChangeEmail}
-            />
+            <Form.Control type="email" name="name" placeholder="Email" onChange={onChangeEmail} />
           </Form.Group>
           <Form.Group className="mb-3" controlId="formBasicPassword">
             <Form.Label>Password*</Form.Label>
@@ -103,11 +96,7 @@ const FormLogin = () => {
             />
           </Form.Group>
         </Form>
-        <button
-          onClick={handleLogin}
-          className="btn-signup"
-          disabled={loading ? true : false}
-        >
+        <button onClick={handleLogin} className="btn-signup" disabled={loading ? true : false}>
           {loading ? "...loading" : "Sign in"}
         </button>
         <div className="have-account">

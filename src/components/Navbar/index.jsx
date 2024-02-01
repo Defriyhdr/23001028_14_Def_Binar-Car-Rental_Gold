@@ -99,12 +99,8 @@ const Navbar = () => {
                 </li>
                 <li className="nav-item">
                   {accesToken ? (
-                    <Button
-                      onClick={handleLogOut}
-                      variant="success"
-                      className="rounded"
-                    >
-                      Logout
+                    <Button onClick={handleLogOut} variant="danger" className="rounded">
+                      <b>Logout</b>
                     </Button>
                   ) : (
                     <Link to={"/register"}>
